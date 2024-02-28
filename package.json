@@ -1,0 +1,19 @@
+{
+  "name": "teg",
+  "version": "1.0.0",
+  "description": "This proyect was developed to fulfill the requirements for our Technical Superior Degree in Computer Science.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/FawziL/TEG"
+  },
+  "author": "Ruiz Victor && Lutfallah Fawzi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
