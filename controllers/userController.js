@@ -15,10 +15,10 @@ async function getAllUsers(req, res) {
   }
 }
 
-async function createUser(req, res) {
+async function createProduct(req, res) {
     try {
       console.log(req.body)
-      const user = await service.createUser(req.body.name, req.body.email);
+      const user = await service.createProduct(req.body.name, req.body.email);
       res.status(201).json({
         success: true,
         data: user,
@@ -33,5 +33,5 @@ async function createUser(req, res) {
 
 module.exports = {
   getAllUsers,
-  createUser
+  createProduct
 };
