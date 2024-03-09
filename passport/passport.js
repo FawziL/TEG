@@ -17,7 +17,7 @@ async (username, password, done) => {
     return done(null, false, { message: 'Contraseña incorrecta' });
   }
   return done(null, user.rows[0]);
-}));
+})); 
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

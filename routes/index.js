@@ -43,7 +43,7 @@ router.get('/home', (req, res) => {
 });
   
 router.get('/register', (req, res) => {
-  res.sendFile(__dirname + '/..public/register.html');
+  res.sendFile(path.resolve(__dirname, "../public/register.html"));
 });
   
 router.post('/register', async (req, res) => {

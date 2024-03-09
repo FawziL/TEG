@@ -64,7 +64,7 @@ async function deleteProduct(id) {
     };
   }
 }
-
+ 
 async function getProduct(id) {
   try {
     const result = await pool.query(`SELECT * FROM productos WHERE id = $1`, [id]);
