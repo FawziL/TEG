@@ -3,9 +3,10 @@ const router = Router()
 const path = require('path')
 const controller = require('../controllers/userController');
 const passport = require("../passport/passport.js");
+const auth = require("../middlewares/isAuth")
 
 router.get('/', (req, res) => {
-  res.send('¡Hola desde el servidor!');
+  res.sendFile(path.resolve(__dirname, "../public/home.html"));
 });
 
 router.get('/users', controller.getAllUsers);
@@ -16,31 +17,26 @@ router.get('/newProduct', (req, res) => {
 
 router.post('/newProduct', controller.createProduct);
 
-router.post('/putProduct', controller.putProduct);
+router.get('/putProduct/:id', controller.putProduct);
 
-router.post('/deleteProduct', controller.deleteProduct);
+router.post('/putProduct/:id/update', controller.updateProduct);
 
-router.post('/getProduct', controller.getProduct);
+router.get('/deleteProduct/:id', controller.deleteProduct);
 
-router.get('/products', controller.getProducts);
+router.get('/product/:id', controller.getProduct);
+
+router.get('/products', auth , controller.getProducts);
+
+router.get('/productsAdmin', auth , controller.getProductsAdmin);
 
 router.get('/login', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../public/login.html"))
 });
   
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
+  successRedirect: '/',
   failureRedirect: '/login',
 }));
-  
-router.get('/home', (req, res) => {
-  // Mostrar la página de inicio solo si el usuario está autenticado
-  if (req.isAuthenticated()) {
-    res.send('¡Bienvenido a casa!');
-  } else {
-    res.redirect('/login');
-  }
-});
   
 router.get('/register', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../public/register.html"));
@@ -56,5 +52,7 @@ router.post('/register', async (req, res) => {
     res.status(400).json({ error: 'Error al registrar al usuario' });
   }
 });
+
+router.get('/logout', controller.logout) 
 
 module.exports = router
