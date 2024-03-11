@@ -24,10 +24,12 @@ async function getProducts() {
   }
 }
 
-async function createProduct(name, price) {
+async function createProduct(name, price, description, category, img) {
   try {
-    const query = `INSERT INTO productos (name, price) VALUES ($1, $2) RETURNING *`;
-    const values = [name, price];
+    console.log('chao')
+    console.log(name, price, description, category, img);
+    const query = `INSERT INTO productos (name, price, description, category, img) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+    const values = [name, price, description, category, img];
     const result = await pool.query(query, values);
     return result.rows[0];
   } catch (error) {

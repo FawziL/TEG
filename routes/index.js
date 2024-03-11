@@ -25,7 +25,7 @@ router.get('/deleteProduct/:id', controller.deleteProduct);
 
 router.get('/product/:id', controller.getProduct);
 
-router.get('/products', auth , controller.getProducts);
+router.get('/products' , controller.getProducts);
 
 router.get('/productsAdmin', auth , controller.getProductsAdmin);
 
