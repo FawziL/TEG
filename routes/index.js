@@ -2,6 +2,7 @@ const { Router } = require('express')
 const router = Router()
 const path = require('path')
 const controller = require('../controllers/userController');
+const cartController = require('../controllers/cartController');
 const passport = require("../passport/passport.js");
 const auth = require("../middlewares/isAuth")
 
@@ -27,7 +28,11 @@ router.get('/product/:id', controller.getProduct);
 
 router.get('/products' , controller.getProducts);
 
-router.get('/productsAdmin', auth , controller.getProductsAdmin);
+router.get('/productsAdmin', auth, controller.getProductsAdmin);
+
+router.get('/cart', auth, cartController.getCart);
+
+router.get('/addProduct/:id', auth, cartController.addProduct);
 
 router.get('/login', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../public/login.html"))
@@ -53,6 +58,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-router.get('/logout', controller.logout) 
+router.get('/logout', auth, controller.logout) 
 
 module.exports = router

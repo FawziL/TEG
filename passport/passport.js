@@ -35,9 +35,12 @@ passport.register = async (username, password) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Registrar el usuario en la base de datos
-  await db.query('INSERT INTO usuarios (username, password) VALUES ($1, $2)', [username, hashedPassword]);
+  const user = await db.query('INSERT INTO usuarios (username, password) VALUES ($1, $2)  RETURNING *', [username, hashedPassword]);
 
-  return { success: true };
+  // Crear el carrito del usuario en la base de datos
+  const cart  = await db.query('INSERT INTO carrito (id_usuario) VALUES ($1) RETURNING *', [user.rows[0].id]);
+
+  return { success: true, usuario: user.rows[0], carrito: cart.rows[0]  };
 };
 
 module.exports = passport;

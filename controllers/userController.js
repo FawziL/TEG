@@ -49,8 +49,6 @@ async function getProductsAdmin(req, res) {
 async function createProduct(req, res) {
   try {
     const user = await service.createProduct(req.body.name, req.body.price, req.body.description, req.body.category, req.body.img);
-    console.log('check');
-    console.log(user);
     res.status(201).json({
       success: true,
       data: user,

@@ -7,7 +7,9 @@
         <p>{{product.description}}</p>
         <p>{{product.category}}</p>
         <img src="{{product.img}}" alt="" srcset="">       
-        
+        <form action="/addProduct/{{product.id}}" method="get">
+          <input type="submit">
+        </form>
       </div>
   </div>
 
