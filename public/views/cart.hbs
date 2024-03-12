@@ -1,9 +1,12 @@
 {{> navbar }}
   <div>
-      <div>
-        <p>{{cart.id}}</p>
-        <p>{{cart.id_usuario}}</p>
-      </div>
+  {{#each productsFromCart}}
+    <li> Producto ID: {{id_producto}} cantidad: {{id_carrito_item}}, {{id_carrito}}</li>
+
+    <form action="/removeProductFrom/{{id_carrito}}/{{id_producto}}" method="post">
+      <input type="submit" value="Quitar">
+    </form>
+  {{/each}}
   </div>
 
 
