@@ -1,5 +1,5 @@
 {{> navbar }}
-  <div>
+<div>
   {{#each productsFromCart}}
     <li> Producto ID: {{id_producto}} cantidad: {{id_carrito_item}}, {{id_carrito}}</li>
 
@@ -7,9 +7,9 @@
       <input type="submit" value="Quitar">
     </form>
   {{/each}}
-  </div>
 
-
-
-
-
+    <form action="/buyCart" method="post">
+      <input type="hidden" name="data" value="{{data}}">
+      <input type="submit" value="Prueba">
+    </form>
+</div>

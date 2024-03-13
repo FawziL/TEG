@@ -45,23 +45,25 @@ async function removeProductsFromCart(idCarrito, idProducto) {
   }
 }
 
-const buyCart = async (email) => {
-    try{
-        const cart = await Cart.getByemail(email)
-        const orderArray = cart.productos
-        const order1 = orderArray
-        await Order.save(email, order1)
-        await Cart.buyCart(cart)
-        return cart
+const buyCart = async (data) => {
+  try{
+      const query = `INSERT INTO ordenes_compra (id_usuario, productos, fecha_compra, estado, nombre_usuario) VALUES ($1, $2, CURRENT_TIMESTAMP, $3, $4)`;
+      let hola = JSON.stringify(data.products)
+      const values = [data.userId, hola, 'pendiente', data.user];
+      const result = await pool.query(query, values);
+      const id_carrito = await getCart(data.userId)
+      await pool.query(`DELETE FROM carrito_items WHERE id_carrito = $1`, [id_carrito.id]);
+      return result.rows[0];
       }
       catch (error) {
         console.log(error)
       }
-  }
+}
   
 module.exports = {
     getCart,
     getProductsFromCart,
     addProducts,
-    removeProductsFromCart
+    removeProductsFromCart,
+    buyCart
   };

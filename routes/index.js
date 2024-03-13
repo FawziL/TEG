@@ -4,6 +4,7 @@ const path = require('path')
 const userController = require('../controllers/userController');
 const productController = require('../controllers/productController');
 const cartController = require('../controllers/cartController');
+const orderController = require('../controllers/orderController');
 const passport = require("../passport/passport.js");
 const auth = require("../middlewares/isAuth")
 
@@ -36,6 +37,12 @@ router.get('/cart', auth, cartController.getProductsFromCart);
 router.get('/addProduct/:id', auth, cartController.addProduct);
 
 router.post('/removeProductFrom/:idCart/:idProduct', auth, cartController.removeProductsFromCart);
+
+router.post('/buyCart', auth, cartController.buyCart);
+
+router.get('/orders', orderController.getOrders);
+
+router.get('/order', auth, orderController.getOrder);
 
 router.get('/login', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../public/login.html"))
