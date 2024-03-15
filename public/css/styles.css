@@ -1,77 +1,103 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #333;
-
-    margin: 0;
-}
-.dark-mode {
-    background-color: #ffffff;
-    color: #fff;
-}
 :root{
-    --white: #FFFFFF;
-    --black: #000000;
+
+    --hospital-green: #ACD9B2;
+    --blue-deep: #394A51;
+    --blue--contrast: #7FA99B;
+    --clear: #FBF2D5;
+    --orange: #FDC57B;
+
     --very-ligth-pink: #C7C7C7;
     --text-input-field: #F7F7F7;
-    --hospital-green: #ACD9B2;
+
+    --white: #FFFFFF;
+    --black: #000;
+
     --sm: 14px;
     --md: 16px;
     --lg: 18px;
 
 }
-nav{
-    background-color: #000000;
-    padding: 10px;
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+html {
+    font-size: 62.5%;
+    font-family: 'DM Sans', sans-serif;
+}
+
+
+.dark-mode {
+    background-color: #ffffff;
+    color: #fff;
+}
+
+
+header{
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    height: 8rem;
+    text-align: center;
+    background-color: var(--blue-deep);   
+}
+
 nav a{
+    font-size: var(--md);
+    font-weight: bold;
     text-decoration: none;
     color: white;
     margin: 10px;
+    padding: 10px;
+    border: solid 1px var(--clear);
+    border-radius: 25px;
 }
 nav a:hover{
     text-decoration: none;
-    color: rgb(35, 34, 82);
+    color: var(--blue--contrast);
     margin: 10px;
 }
-.login {
+
+main{
     width: 100%;
-    height: 85vh;
+    height: 50rem;
     display: flex;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
     
 }
 
-.form-container{
-    /*display: grid;
-    grid-template-rows: auto 1fr auto;*/
+.login {
+    width: 85%;
+    height: 50rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 15rem;
+}
 
+.form-container{
     width: 300px;
     border: solid 2px black;
     border-radius: 15px;
     padding: 20px;
-    background-color: #57a57e8a;
+    background-color: var(--white);
 }
 
 .form-container h1 {
     text-align: center;
 }
 
-.logo{
-    width: 150px;
-    margin-bottom: 48px;
-    justify-self: center;
-    display: none;
-}
-
-.form{
-   display: flex;
-   flex-direction: column; 
-}
 
 .form a{
     font-size: var(--sm);
-    color: var(--hospital-green);
+    color: var(--blue--contrast);
     text-decoration: none;
     text-align: center;
 }
@@ -96,7 +122,7 @@ nav a:hover{
 }
 
 .primary-button{
-    background-color: var(--hospital-green);
+    background-color: var(--blue--contrast);
     border-radius: 8px;
     border: none;
     color: var(--white);
@@ -119,19 +145,76 @@ nav a:hover{
     background-color: var(--white);
     font-size: var(--md);
     font-weight: bold;
-    color: var(--hospital-green);
+    color: var(--blue--contrast);
     border-radius: 8px;
     border: solid 1px;
-    border-color: var(--hospital-green);
+    border-color: var(--blue--contrast);
     cursor: pointer;
     margin-top: 75px;
 }
 
-@media (max-width: 640px){
+
+footer{
+    background-color: var(--blue-deep);
+    width: 100%;
+    height: 10rem;
+    position: absolute;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    font-size: 1.3rem;
+    border-top: 1px solid #e4e4e4;
+    padding: 2.5rem;
+}
+
+.Product-formulary{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Product-formulary form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.newProduct-form{
+    width: 300px;
+    border: solid 2px black;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: var(--white);
+    font-size: var(--sm);
+    color: var(--blue--contrast);
+    text-decoration: none;
+    text-align: center;
+}
+
+
+.newProduct-button{
+    background-color: var(--blue--contrast);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 100%;
+    cursor: pointer;
+    font-size: var(--md);
+    font-weight: bold;
+    height: 50px;
+}
+
+
+
+/*@media (max-width: 640px){
 
     .form{
         height: 100%;
         justify-content: space-between;
     }
     
-}
+}*/

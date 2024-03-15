@@ -6,22 +6,25 @@
   <title>Login</title>
 </head>
 <body>
-  <nav>
+  <header>
+  <nav class=".nav-container">
     <button id="modo-toggle">Cambiar Modo</button>
     <a href="/">Home</a>
     <a href="/products">Productos</a>
     <a href="/login">Login</a>
     <a href="/users">Usuarios</a>
   </nav>
+</header>
 
- 
+  <main>
   <div class="login">
     <div class="form-container">
       <h1>Iniciar Sesion</h1>
 
         <form action="/login" method="post"  class="form">
             <div>
-                <label for="username" class="label"> Nombre de Usuario</label>
+            
+            <label for="username" class="label"> Nombre de Usuario</label>
             <input type="text" id="name" name="username" placeholder="Vikthor" class="input input-password">
 
             <label for="password" class="label">Password </label>
@@ -33,12 +36,8 @@
 
             <a href="/">Forgot my password</a>
         </form>
-
         <button class="signup-button login-button" id="Register" onclick="goLogin()"> Registrarse</button>
-
-
     </div>
-
 </div>
 
 <script src="./js/main.js"> </script>
@@ -48,6 +47,21 @@
   location.href = '/register';
   }
 </script>
+</main>
+
+<footer>
+  <nav>
+    <a href="#">Acerca de nosotros</a>
+    <a href="#">Servicios</a>
+    <a href="#">Contacto</a>
+  </nav>
+  <p>&copy; 2024 Nombre de la empresa. Todos los derechos reservados.</p>
+  <a href="mailto:contacto@empresa.com">Contáctenos</a>
+  <ul>
+    <li><a href="#">Términos de servicio</a></li>
+    <li><a href="#">Política de privacidad</a></li>
+  </ul>
+</footer>
 
 </body>
 </html>
