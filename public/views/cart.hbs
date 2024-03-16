@@ -1,15 +1,23 @@
 {{> navbar }}
 <div>
-  {{#each productsFromCart}}
-    <li> Producto ID: {{id_producto}} cantidad: {{id_carrito_item}}, {{id_carrito}}</li>
+  <h1>Tu carrito:</h1>
+  <div class="dFlexProducts">
+    <div class="cart">
+      {{#each productsFromCart}}
+      <div class="containerProductCart">
+        <li> Producto ID: {{id_producto}}</li>
+        <li>Id Carrito: {{id_carrito}}</li>
+        <li>Cantidad: {{id_carrito_item}}</li>
+        <form action="/removeProductFrom/{{id_carrito}}/{{id_producto}}" method="post">
+          <input type="submit" value="Quitar" class="removeButton">
+        </form>
+      </div>
+      {{/each}}
 
-    <form action="/removeProductFrom/{{id_carrito}}/{{id_producto}}" method="post">
-      <input type="submit" value="Quitar">
-    </form>
-  {{/each}}
-
-    <form action="/buyCart" method="post">
-      <input type="hidden" name="data" value="{{data}}">
-      <input type="submit" value="Prueba">
-    </form>
+      <form action="/buyCart" method="post">
+        <input type="hidden" name="data" value="{{data}}">
+        <input type="submit" value="Comprar" class="cardButton">
+      </form>
+    </div>
+  </div>
 </div>
