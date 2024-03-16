@@ -6,12 +6,14 @@ h1{
 .dFlexProducts{
     display: flex;
     margin: 25px;
+    height: 70vh;
     border: none;
     justify-content: center;
 }
 
 .card{
     width: 280px;
+    height: 320px;
     background-color: rgb(246, 246, 243);
     margin: 15px;
     text-align: center;
@@ -48,11 +50,11 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
-    margin: 35px;
+    height: 75vh;
     width: 60%;
     margin: auto;
     margin-top: 20px;
+    margin-bottom: 20px;
     border-style: solid;
     border-radius: 16px;
 }
@@ -89,6 +91,7 @@ h1{
 .cart{
     border-style: solid;
     padding: 15px;
+    height: 200px;
     border-radius: 26px;
     background-color: rgb(237, 240, 240);
     display: flex;

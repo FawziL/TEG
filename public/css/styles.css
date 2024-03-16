@@ -164,9 +164,7 @@ main{
 footer{
     background-color: var(--blue-deep);
     width: 100%;
-    height: 10rem;
-    position: absolute;
-    bottom: 0;
+    height: 15rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -250,17 +248,15 @@ footer{
     color: rgb(0, 0, 0);
 }
 
-
-
 .main-home-section1 div{
     margin-left: 60px; 
 }
 
 .main-home-section1 img{
     height: 70vh;
-    margin-right:-160px;
+    margin-right:-140px;
 }
-.cardButton{
+.homeButton{
     background-color: #00BF63;
     height: 56px;
     width: 240px;
@@ -274,7 +270,7 @@ footer{
     /*background-color: rgb(123, 5, 5);*/
 }
 
-.cardButton:hover{
+.homeButton:hover{
     background-color: white;
     border:solid 1px rgb(123, 5, 5);
     color: rgb(123, 5, 5);
