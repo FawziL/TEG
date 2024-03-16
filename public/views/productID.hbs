@@ -1,0 +1,21 @@
+{{> navbar }}
+  <div class="dFlexDetailProduct">
+      <div class="textDetails">
+        <h2>Id del producto: {{product.id}}</h2>
+        <h2>Nombre del producto: {{product.name}}</h2>
+        <h2>Precio: {{product.price}}$</h2>
+        <h2>Descripción: {{product.description}}</h2>
+        <h2>Categoría: {{product.category}}</h2>
+        <form action="/addProduct/{{product.id}}" method="get">
+          <input type="submit" value="Agregar al carrito" class="cardButton">
+        </form>
+      </div>
+      <img src="{{product.img}}" alt="" srcset="" class="imgDetail">       
+  </div>
+  {{>footer}}
+
+
+
+
+
+

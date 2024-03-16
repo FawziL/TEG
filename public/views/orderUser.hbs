@@ -1,0 +1,10 @@
+{{> navbar }}
+<div>
+  {{#each orderUser}}
+    <li>Nombre: {{nombre_usuario}}, Id Usuario{{id_usuario}} Id de Compra {{id_orden_compran}} fecha: {{fecha_compra}}, estado: {{estado}} </li>
+    {{#each productos}}
+        <p>IDProducto:{{idProducto}} IDCarritoItem:{{idCarritoItem}} IDCarrito:{{idCarrito}}</p>
+    {{/each}}
+  {{/each}}
+</div>
+{{>footer }}

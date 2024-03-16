@@ -1,0 +1,17 @@
+{{> navbar }}
+  <h1>Nuestros trajes son de la mayor calidad</h1>
+  <div class="dFlexProducts">
+    {{#each products}} 
+      <div class="card">
+        <img src="{{img}}" alt="" srcset=""> 
+        <h3>{{name}}</h3>
+        <h3>{{price}}$</h3>
+        <a href="/product/{{id}}"><button  class="cardButton">Ver detalles</button></a>
+      </div>
+    {{/each}}
+</div>
+{{>footer}}
+
+
+
+

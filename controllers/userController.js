@@ -3,10 +3,7 @@ const service = require('../services/userService');
 async function getAllUsers(req, res) {
   try {
     const users = await service.getUsers();
-    res.status(200).json({
-      success: true,
-      data: users,
-    });
+    res.render('users', { users });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -15,23 +12,18 @@ async function getAllUsers(req, res) {
   }
 }
 
-async function createUser(req, res) {
-    try {
-      console.log(req.body)
-      const user = await service.createUser(req.body.name, req.body.email);
-      res.status(201).json({
-        success: true,
-        data: user,
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message,
-      });
-    }
-  }
+async function logout (req, res, next) {
+  let user = req.user.username;
+  req.logout(function (err) {
+    if (err) return next(err);
+    res.send(`<h1>Hasta luego ${user}</h1>
+          <script type="text/javascript">
+          setTimeout(function(){ location.href = '/login'},2000)
+          </script>`);
+  });
+};
 
 module.exports = {
   getAllUsers,
-  createUser
+  logout,
 };

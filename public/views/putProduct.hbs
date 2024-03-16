@@ -1,0 +1,8 @@
+{{> navbar }}
+<form action="/putProduct/{{id}}/update" method="post">
+    Modicar producto con id: {{id}}
+    <input type="text" name="name">
+    <input type="number" name="price">
+    <input type="submit">
+</form>
+{{>footer}}

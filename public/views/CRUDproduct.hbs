@@ -1,0 +1,22 @@
+{{> navbar }}
+  <div>
+    {{#each products}} 
+      <div>
+        <p>{{id}}</p>
+        <p>{{name}}</p>
+        <p>{{price}}</p>
+        <a href="/{{id}}">
+          <button>Moficar</button>
+        </a>
+        <a href="/{{id}}">
+          <button>Eliminar</button>
+        </a>
+      </div>
+    {{/each}}
+  </div>
+{{> footer }}
+
+
+
+
+

@@ -1,0 +1,22 @@
+{{> navbar }}
+    <h1>AQUI PUEDES EDITAR LOS PRODUCTOS</h1>
+  <div class="dFlexProducts">
+    <a href="/newProduct"><button  class="buttonPreview">Crear Nuevo Producto</button></a>
+    {{#each products}} 
+      <div class="card">
+        <img src="{{img}}" alt="" srcset=""> 
+        <p>{{id}}</p>
+        <p>{{name}}</p>
+        <p>{{price}}</p>
+        <a href="/product/{{id}}"><button  class="buttonPreview">Ver detalles</button></a>
+        <a href="/putProduct/{{id}}"><button  class="buttonPreview">Editar</button></a>
+        <a href="/deleteProduct/{{id}}"><button  class="buttonPreview">Borrar</button></a>
+      </div>
+    {{/each}}
+</div>
+{{>footer}}
+
+
+
+
+
