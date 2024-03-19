@@ -19,12 +19,12 @@ async function getProductsFromCart(id_user) {
   }
 }
 
-async function addProducts(idCarrito, idProducto) {
+async function addProducts(idCarrito, idProducto, cantidad, precio) {
   try {
     const query = `
-      INSERT INTO carrito_items (id_carrito, id_producto)
-      VALUES ($1, $2) RETURNING *`;
-    const values = [idCarrito, idProducto];
+      INSERT INTO carrito_items (id_carrito, id_producto, cantidad, precio)
+      VALUES ($1, $2, $3, $4) RETURNING *`;
+    const values = [idCarrito, idProducto, cantidad, precio];
     const result = await pool.query(query, values);
     return result.rows[0];
   } catch (error) {
@@ -47,9 +47,9 @@ async function removeProductsFromCart(idCarrito, idProducto) {
 
 const buyCart = async (data) => {
   try{
-      const query = `INSERT INTO ordenes_compra (id_usuario, productos, fecha_compra, estado, nombre_usuario) VALUES ($1, $2, CURRENT_TIMESTAMP, $3, $4)`;
-      let hola = JSON.stringify(data.products)
-      const values = [data.userId, hola, 'pendiente', data.user];
+      const query = `INSERT INTO ordenes_compra (id_usuario, productos, fecha_compra, estado, nombre_usuario, precio_total) VALUES ($1, $2, CURRENT_TIMESTAMP, $3, $4, $5)`;
+      let products = JSON.stringify(data.products)
+      const values = [data.userId, products, 'pendiente', data.user, data.precioTotal];
       const result = await pool.query(query, values);
       const id_carrito = await getCart(data.userId)
       await pool.query(`DELETE FROM carrito_items WHERE id_carrito = $1`, [id_carrito.id]);

@@ -7,6 +7,7 @@ const cartController = require('../controllers/cartController');
 const orderController = require('../controllers/orderController');
 const passport = require("../passport/passport.js");
 const auth = require("../middlewares/isAuth")
+const upload = require ('../multer/multer.js')
 
 router.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../public/home.html"));
@@ -18,7 +19,7 @@ router.get('/newProduct', (req, res) => {
   res.sendFile(path.join(__dirname, "../public/products.html"))
 });
 
-router.post('/newProduct', productController.createProduct);
+router.post('/newProduct', upload.single('img'), productController.createProduct);
 
 router.get('/putProduct/:id', productController.putProduct);
 
@@ -34,7 +35,7 @@ router.get('/productsAdmin', auth, productController.getProductsAdmin);
 
 router.get('/cart', auth, cartController.getProductsFromCart);
 
-router.get('/addProduct/:id', auth, cartController.addProduct);
+router.post('/addProduct/:id', auth, cartController.addProduct);
 
 router.post('/removeProductFrom/:idCart/:idProduct', auth, cartController.removeProductsFromCart);
 

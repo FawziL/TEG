@@ -24,7 +24,7 @@
       <h1>Ingrese nuevo producto</h1>
     <div>
 
-    <form class="newProduct-form" action="/newProduct" method="post">
+    <form class="newProduct-form" action="/newProduct" method="post" enctype="multipart/form-data">
       <label for="name" class="label"> Nombre de Producto</label>
       <input type="text" name="name">
 
@@ -38,7 +38,7 @@
       <input type="category" name="category">
 
       <label for="img" class="label"> Imagen de Producto</label>
-      <input type="img" name="img">
+      <input type="file" name="img">
     
     <input class="newProduct-button" type="submit">
 

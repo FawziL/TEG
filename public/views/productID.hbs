@@ -6,13 +6,25 @@
         <h2>Precio: {{product.price}}$</h2>
         <h2>Descripción: {{product.description}}</h2>
         <h2>Categoría: {{product.category}}</h2>
-        <form action="/addProduct/{{product.id}}" method="get">
+
+        <div class="contador">
+            <button id="boton-disminuir10">Disminuir 10</button>
+            <button id="boton-disminuir">Disminuir</button>
+            <span id="numero-conteo">0</span>
+            <button id="boton-aumentar1">Aumentar 1</button>
+            <button id="boton-sumar10">Sumar 10</button>
+            <button id="boton-sumar100">Sumar 100</button>
+          </div>
+        <form action="/addProduct/{{product.id}}" method="post">
+          <input type="hidden" name="price" value={{product.price}}>
+          <input type="hidden" id="valor-conteo-hidden" name="cantidad" />
           <input type="submit" value="Agregar al carrito" class="cardButton">
         </form>
       </div>
       <img src="{{product.img}}" alt="" srcset="" class="imgDetail">       
   </div>
   {{>footer}}
+  <script src="../js/button.js"></script>
 
 
 
