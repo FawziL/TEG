@@ -48,8 +48,8 @@ async function getProducts(req, res) {
   }
   const updateProduct = async (req, res) => {
     try {
-      const product = await service.putProduct(req.body.name, req.body.price, req.params.id)
-      console.log(req.body.name, req.body.price, req.params.id)
+      const product = await service.putProduct(req.body.name, req.body.price, req.body.description, req.body.category, req.params.id)
+      console.log(req.body.name, req.body.price, req.body.description, req.body.category, req.params.id)
       res.status(201).json({
         success: true,
         data: product,

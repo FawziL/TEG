@@ -27,11 +27,11 @@ async function createProduct(name, price, description, category, img) {
   }
 }
   
-async function putProduct(name, price, id) {
+async function putProduct(name, price, description, category, id) {
   try {
     const result = await pool.query(
-      `UPDATE productos SET name = $1, price = $2 WHERE id = $3`,
-      [name, price, id]
+      `UPDATE productos SET name = $1, price = $2, description = $3, category = $4 WHERE id = $5`,
+      [name, price, description, category, id]
      );
     return result.rowCount;
   } catch (error) {

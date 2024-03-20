@@ -1,6 +1,6 @@
 const numeroConteoSpan = document.getElementById("numero-conteo");
 let valorConteoHidden = document.getElementById("valor-conteo-hidden");
-
+valorConteoHidden.value = 1;
 let numeroConteo = 1;
 
 numeroConteoSpan.textContent = numeroConteo;
@@ -33,14 +33,7 @@ function sumar10() {
   valorConteoHidden.value = numeroConteo;
 }
 
-function sumar100() {
-  numeroConteo += 100;
-  numeroConteoSpan.textContent = numeroConteo;
-  valorConteoHidden.value = numeroConteo;
-}
-
 document.getElementById("boton-disminuir").addEventListener("click", disminuirConteo);
 document.getElementById("boton-disminuir10").addEventListener("click", disminuir10);
 document.getElementById("boton-aumentar1").addEventListener("click", aumentar1);
 document.getElementById("boton-sumar10").addEventListener("click", sumar10);
-document.getElementById("boton-sumar100").addEventListener("click", sumar100);

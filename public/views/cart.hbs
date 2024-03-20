@@ -1,8 +1,9 @@
 {{> navbar }}
-<div>
+<div class="mainContainer">
   <h1>Tu carrito:</h1>
   <div class="cartContainer">
     <div class="cart">
+      <div class="dFlex flexWrap">
       {{#each productsFromCart}}
       <div class="containerProductCart">
         <li> Producto ID: {{id_producto}}</li>
@@ -15,8 +16,9 @@
         </form>
       </div>
       {{/each}}
-      <div>
-        <li> Monto Total: {{totalPrecio}}</li>
+      </div>
+      <div class=" dFlex justifyContentEnd">
+        <h2> Monto Total: {{totalPrecio}}</h2>
         <form action="/buyCart" method="post">
           <input type="hidden" name="data" value="{{data}}">
           <input type="submit" value="Comprar" class="cardButton">

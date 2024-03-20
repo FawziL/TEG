@@ -1,19 +1,18 @@
 {{> navbar }}
   <div class="dFlexDetailProduct">
       <div class="textDetails">
-        <h2>Id del producto: {{product.id}}</h2>
-        <h2>Nombre del producto: {{product.name}}</h2>
+        <h1>{{product.name}}</h1>
+        <h2>{{product.category}}</h2>
+        <h2>DETALLES</h2>
+        <p>{{product.description}}</p>
         <h2>Precio: {{product.price}}$</h2>
-        <h2>Descripción: {{product.description}}</h2>
-        <h2>Categoría: {{product.category}}</h2>
 
         <div class="contador">
-            <button id="boton-disminuir10">Disminuir 10</button>
-            <button id="boton-disminuir">Disminuir</button>
+            <button id="boton-disminuir10" class="buttonDiscount">-10</button>
+            <button id="boton-disminuir" class="buttonDiscount">-1</button>
             <span id="numero-conteo">0</span>
-            <button id="boton-aumentar1">Aumentar 1</button>
-            <button id="boton-sumar10">Sumar 10</button>
-            <button id="boton-sumar100">Sumar 100</button>
+            <button id="boton-aumentar1" class="buttonCount">+1</button>
+            <button id="boton-sumar10" class="buttonCount">+10</button>
           </div>
         <form action="/addProduct/{{product.id}}" method="post">
           <input type="hidden" name="price" value={{product.price}}>

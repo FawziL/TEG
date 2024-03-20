@@ -1,24 +1,26 @@
 {{> navbar }}
-<h1>Ordenes</h1>
-<div class="dFlexProducts">
-  <div class="containerOrder">
-  {{#each orderUser}}
-    <li>Nombre: {{nombre_usuario}}, Id Usuario: {{id_usuario}} Id de Compra: {{id_orden_compra}}</li>
-    <li>Fecha: {{fecha_compra}}</li>
-    <li>Estado: {{estado}} </li>
-    <div class="dFlex">
-    {{#each productos}}
-    <div class="orderProducts">
-        <p>IDProducto:{{idProducto}} </p>
-        <p>IDCarritoItem:{{idCarritoItem}} </p>
-        <p>IDCarrito:{{idCarrito}} </p>
-        <p>Cantidad:{{cantidad}} </p>
-        <p>Precio Unitario:{{precio}}</p>
-    </div>
+<div class="mainContainer">
+  <h1>Ordenes</h1>
+  <div class="dFlex justifyContentCenter">
+    <div class="containerOrder">
+    {{#each orderUser}}
+      <li>Nombre: {{nombre_usuario}}, Id Usuario: {{id_usuario}} Id de Compra: {{id_orden_compra}}</li>
+      <li>Fecha: {{fecha_compra}}</li>
+      <li>Estado: {{estado}} </li>
+      <div class="dFlex">
+      {{#each productos}}
+      <div class="orderProducts">
+          <p>IDProducto:{{idProducto}} </p>
+          <p>IDCarritoItem:{{idCarritoItem}} </p>
+          <p>IDCarrito:{{idCarrito}} </p>
+          <p>Cantidad:{{cantidad}} </p>
+          <p>Precio Unitario:{{precio}}</p>
+      </div>
+      {{/each}}
+      </div>
+      <li>Monto total: {{precio_total}}</li>
     {{/each}}
     </div>
-    <li>Monto total: {{precio_total}}</li>
-  {{/each}}
   </div>
 </div>
 {{>footer }}
