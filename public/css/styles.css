@@ -72,7 +72,9 @@ main{
     justify-content:center;
     align-items: center; 
 }
-
+.dFlex{
+    display: flex;
+}
 .login {
     width: 85%;
     height: 50rem;

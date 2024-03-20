@@ -81,29 +81,51 @@ h1{
     border-radius: 15px;
     padding: 10px;
     margin: 10px;
+    margin-bottom: 0px;
     border: none;
     color: white;
-    cursor:pointer
+    cursor:pointer;
+    position: relative;
+    left: 150px;
 }
 .removeButton:hover{
     background-color: rgb(120, 10, 16);
 }
+.cartContainer{
+    margin: 30px;
+    
+}
 .cart{
     border-style: solid;
     padding: 15px;
-    height: 200px;
     border-radius: 26px;
     background-color: rgb(237, 240, 240);
-    display: flex;
 }
 .containerProductCart{
     border-style: solid;
     margin: 10px;
     border-radius: 12px;
     padding: 15px;
-    width: 200px;
+    width: 250px;
     background-color: rgb(255, 255, 255);
 }
 .cart li{
     font-size: 18px;
+}
+.containerOrder{
+    background-color: aqua;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px black;
+    padding: 15px;
+}
+.containerOrder li{
+    font-size: 16px;
+    margin: 3px;
+}
+.orderProducts{
+    border-style: solid;
+    border-radius: 5px;
+    margin: 15px;
+    padding: 5px;
 }

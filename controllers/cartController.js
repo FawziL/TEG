@@ -22,7 +22,7 @@ async function getProductsFromCart(req, res) {
       precioTotal: totalPrecio
     };
     const data = JSON.stringify(dataCarrito)
-    res.render('cart', { productsFromCart, data});
+    res.render('cart', { productsFromCart, data, totalPrecio });
   } catch (error) {
     res.status(500).json({
       success: false,
