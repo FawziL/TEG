@@ -21,6 +21,8 @@ async function getProductsFromCart(req, res) {
       userId: req.user.id,
       precioTotal: totalPrecio
     };
+    const admin = req.user.role
+    console.log(admin)
     const data = JSON.stringify(dataCarrito)
     res.render('cart', { productsFromCart, data, totalPrecio });
   } catch (error) {

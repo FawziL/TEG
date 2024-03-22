@@ -7,6 +7,7 @@ passport.use(new LocalStrategy({
   usernameField: 'username',
   passwordField: 'password',
 },
+
 async (username, password, done) => {
   const user = await db.query('SELECT * FROM usuarios WHERE username = $1', [username]);
   if (!user.rows.length) {
@@ -31,11 +32,13 @@ passport.deserializeUser(async (id, done) => {
   done(null, user.rows[0]);
 });
 
-passport.register = async (username, password) => {
+passport.register = async (username, password, email, phoneNumber, firstName, lastName) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Registrar el usuario en la base de datos
-  const user = await db.query('INSERT INTO usuarios (username, password) VALUES ($1, $2)  RETURNING *', [username, hashedPassword]);
+  const user = await db.query(
+  'INSERT INTO usuarios (username, password, email, role, phone_number, first_name, last_name) VALUES ($1, $2, $3, $4, $5, $6, $7)  RETURNING *', 
+  [username, hashedPassword, email, 3, phoneNumber, firstName, lastName]);
 
   // Crear el carrito del usuario en la base de datos
   const cart  = await db.query('INSERT INTO carrito (id_usuario) VALUES ($1) RETURNING *', [user.rows[0].id]);
