@@ -39,14 +39,18 @@ html {
 header{
     position: relative;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 8rem;
     text-align: center;
-    background-color: var(--blue-deep);   
+    background-image: url(../assets/img/background-head.png);
+    background-size: cover;
 }
 
+header div img{
+    margin-left: 55px;
+    height: 70px;
+}
 nav a{
     font-size: var(--md);
     font-weight: bold;
@@ -173,7 +177,7 @@ main{
 }
 
 footer{
-    background-color: var(--blue-deep);
+    background-image: url(../assets/img/background-footer.png);
     width: 100%;
     height: auto;
     text-align: center;
@@ -181,7 +185,7 @@ footer{
     font-size: 1.3rem;
     border-top: 1px solid #e4e4e4;
     padding: 0.5rem;
-    line-height: 20px;
+    line-height: 15px;
     color: white;
 }
 
@@ -205,7 +209,7 @@ footer .footer-list li a{
 footer a{
     text-decoration: none;
     list-style: none;
-    color: white;
+    color: #244357;
 }
 
 footer .social-container a img{
@@ -270,10 +274,22 @@ footer .social-container a img:hover {
 .main-home{
     width: 100%;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
     
 }
 
 .main-home .main-home-section1{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    line-height: 2.8rem;
+    z-index: 1;
+    align-items: center;
+}
+
+.main-home .main-home-section2{
     width: 100%;
     height: auto;
     display: flex;
