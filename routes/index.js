@@ -7,40 +7,43 @@ const cartController = require('../controllers/cartController');
 const orderController = require('../controllers/orderController');
 const passport = require("../passport/passport.js");
 const auth = require("../middlewares/isAuth")
+const root = require("../middlewares/isRoot")
+const admin = require("../middlewares/isAdmin")
+const upload = require ('../multer/multer.js')
 
 router.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../public/home.html"));
 });
 
-router.get('/users', userController.getAllUsers);
+router.get('/users', auth, root, userController.getAllUsers)
 
-router.get('/newProduct', (req, res) => {
+router.get('/newProduct', auth, admin, (req, res) => {
   res.sendFile(path.join(__dirname, "../public/products.html"))
 });
 
-router.post('/newProduct', productController.createProduct);
+router.post('/newProduct', upload.single('img'), productController.createProduct);
 
-router.get('/putProduct/:id', productController.putProduct);
+router.get('/putProduct/:id', auth, admin, productController.putProduct);
 
-router.post('/putProduct/:id/update', productController.updateProduct);
+router.post('/putProduct/:id/update', auth, admin, productController.updateProduct);
 
-router.get('/deleteProduct/:id', productController.deleteProduct);
+router.get('/deleteProduct/:id',auth, admin, productController.deleteProduct);
 
 router.get('/product/:id', productController.getProduct);
 
-router.get('/products' , productController.getProducts);
+router.get('/products', productController.getProducts);
 
-router.get('/productsAdmin', auth, productController.getProductsAdmin);
+router.get('/productsAdmin', auth, admin, productController.getProductsAdmin);
 
 router.get('/cart', auth, cartController.getProductsFromCart);
 
-router.get('/addProduct/:id', auth, cartController.addProduct);
+router.post('/addProduct/:id', auth, cartController.addProduct);
 
 router.post('/removeProductFrom/:idCart/:idProduct', auth, cartController.removeProductsFromCart);
 
 router.post('/buyCart', auth, cartController.buyCart);
 
-router.get('/orders', orderController.getOrders);
+router.get('/orders', auth, admin, orderController.getOrders);
 
 router.get('/order', auth, orderController.getOrder);
 
@@ -58,8 +61,8 @@ router.get('/register', (req, res) => {
 });
   
 router.post('/register', async (req, res) => {
-  const { username, password } = req.body;
-  const result = await passport.register(username, password);
+  const { username, password, email, phoneNumber, firstName, lastName } = req.body;
+  const result = await passport.register(username, password, email, phoneNumber, firstName, lastName);
 
   if (result.success) {
     res.redirect('/login');

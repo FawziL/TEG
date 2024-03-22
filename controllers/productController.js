@@ -25,11 +25,8 @@ async function getProducts(req, res) {
   
   async function createProduct(req, res) {
     try {
-      const user = await service.createProduct(req.body.name, req.body.price, req.body.description, req.body.category, req.body.img);
-      res.status(201).json({
-        success: true,
-        data: user,
-      });
+      await service.createProduct(req.body.name, req.body.price, req.body.description, req.body.category, req.file.filename);
+      res.redirect('/products');
     } catch (error) {
       res.status(500).json({
         success: false,
@@ -51,8 +48,8 @@ async function getProducts(req, res) {
   }
   const updateProduct = async (req, res) => {
     try {
-      const product = await service.putProduct(req.body.name, req.body.price, req.params.id)
-      console.log(req.body.name, req.body.price, req.params.id)
+      const product = await service.putProduct(req.body.name, req.body.price, req.body.description, req.body.category, req.params.id)
+      console.log(req.body.name, req.body.price, req.body.description, req.body.category, req.params.id)
       res.status(201).json({
         success: true,
         data: product,
@@ -66,10 +63,7 @@ async function getProducts(req, res) {
   async function deleteProduct(req, res) {
     try {
       const user = await service.deleteProduct(req.params.id);
-      res.status(201).json({
-        success: true,
-        data: user,
-      });
+      res.redirect('/cart');
     } catch (error) {
       res.status(500).json({
         success: false,

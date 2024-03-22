@@ -3,17 +3,28 @@ const service = require('../services/cartService');
 async function getProductsFromCart(req, res) {
   try {
     const productsFromCart = await service.getProductsFromCart(req.user.id);
+    let totalPrecio = 0;
+
     const dataCarrito = {
-      products: productsFromCart.map(item => ({
-        idCarritoItem: item.id_carrito_item,
-        idCarrito: item.id_carrito,
-        idProducto: item.id_producto,
-      })),
+      products: productsFromCart.map(item => {
+        totalPrecio += item.precio * item.cantidad;
+        return {
+          idCarritoItem: item.id_carrito_item,
+          idCarrito: item.id_carrito,
+          idProducto: item.id_producto,
+          precio: item.precio,
+          cantidad: item.cantidad,
+          total: item.precio * item.cantidad
+        };
+      }),
       user: req.user.username,
       userId: req.user.id,
+      precioTotal: totalPrecio
     };
+    const admin = req.user.role
+    console.log(admin)
     const data = JSON.stringify(dataCarrito)
-    res.render('cart', { productsFromCart, data});
+    res.render('cart', { productsFromCart, data, totalPrecio });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -25,13 +36,10 @@ async function getProductsFromCart(req, res) {
 async function addProduct(req, res) {
   try {
     const cart = await service.getCart(req.user.id);
-    const productInCart = await service.addProducts(cart.id, req.params.id)
-    res.status(201).json({
-      success: true,
-      IdCart: cart,
-      IdProduct: req.params.id,
-      cart: productInCart,
-    });
+    const cantidad = parseInt(req.body.cantidad)
+    const precio = parseInt(req.body.price)
+    await service.addProducts(cart.id, req.params.id, cantidad, precio)
+    res.redirect('/cart');
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -44,11 +52,8 @@ async function addProduct(req, res) {
 
 async function removeProductsFromCart(req, res) {
   try {
-    const user = await service.removeProductsFromCart(req.params.idCart, req.params.idProduct);
-    res.status(201).json({
-      success: true,
-      data: user,
-    });
+    await service.removeProductsFromCart(req.params.idCart, req.params.idProduct);
+    res.redirect('/cart');
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -60,11 +65,8 @@ async function removeProductsFromCart(req, res) {
 async function buyCart(req, res) {
   try {
     const cartData = JSON.parse(req.body.data)
-    const cart = await service.buyCart(cartData);
-    res.status(201).json({
-      success: true,
-      data: cart,
-    });
+    await service.buyCart(cartData);
+    res.redirect('/order');
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -75,8 +77,8 @@ async function buyCart(req, res) {
 
 
 module.exports = {
-    getProductsFromCart,
-    addProduct,
-    removeProductsFromCart,
-    buyCart
+  getProductsFromCart,
+  addProduct,
+  removeProductsFromCart,
+  buyCart
 };

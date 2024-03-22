@@ -9,40 +9,64 @@
 
   <header>
     <nav class=".nav-container">
-      <button id="modo-toggle">Cambiar Modo</button>
       <a href="/">Home</a>
       <a href="/products">Productos</a>
       <a href="/register">Register</a>
       <a href="/login">Login</a>
     </nav>
-    </header>
-  
-  <div class="login">
-    <div class="form-container">
-      <h1>Registro</h1>
+  </header>
 
-        <form action="/register" method="post"  class="form">
-            <div>
+  <main>
+    <div class="login">
+      <div class="form-container">
+        <h1>Registro</h1>
+
+          <form action="/register" method="post"  class="form">
+              <div>
                 <label for="username" class="label"> Nombre de Usuario</label>
-            <input type="text" id="name" name="username" placeholder="Vikthor" class="input input-password">
+                <input type="text" name="username" placeholder="Vikthor" class="input input-password">
 
-            <label for="password" class="label">Contraseña </label>
-            <input type="password" id="password" name="password" placeholder="***********" class="input input-password">
+                <label for="password" class="label">Contraseña</label>
+                <input type="password" name="password" placeholder="***********" class="input input-password">
 
-            </div>
-            
-            <input type="submit" value="Registrarse" class="primary-button login-button"></input>
+                <label for="email" class="label">Email</label>
+                <input type="email" name="email" placeholder="ejemplo@email.com" class="input input-password">
 
-            
-        </form>
+                <label for="phoneNumber" class="label">Número Telefónico</label>
+                <input type="tex" name="phoneNumber" placeholder="4149541095" class="input input-password">
+                
+                <label for="firstName" class="label">Nombres</label>
+                <input type="tex" name="firstName" placeholder="4149541095" class="input input-password">
+                
+                <label for="lastName" class="label">Apellidos</label>
+                <input type="tex" name="lastName" placeholder="4149541095" class="input input-password">
+              </div>
+              
+              <input type="submit" value="Registrarse" class="primary-button login-button"></input>              
+          </form>
 
-        <button class="signup-button login-button" id="login" onclick="goLogin()"> Iniciar Sesion</button>
+          <button class="signup-button login-button" id="login" onclick="goLogin()"> Iniciar Sesion</button>
 
+
+      </div>
 
     </div>
+  </main>
 
-</div>
-
+  <footer>
+    <nav>
+      <a href="#">Acerca de nosotros</a>
+      <a href="#">Servicios</a>
+      <a href="#">Contacto</a>
+    </nav>
+    <p>&copy; 2024 Nombre de la empresa. Todos los derechos reservados.</p>
+    <a href="mailto:contacto@empresa.com">Contáctenos</a>
+    <ul>
+      <li><a href="#">Términos de servicio</a></li>
+      <li><a href="#">Política de privacidad</a></li>
+    </ul>
+  </footer>
+  
 <script src="./js/main.js"> </script>
 
 <script>

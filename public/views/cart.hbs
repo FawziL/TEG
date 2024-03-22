@@ -1,23 +1,27 @@
 {{> navbar }}
-<div>
-  <h1>Tu carrito:</h1>
-  <div class="dFlexProducts">
+<div class="mainContainer">
+  <h1>Tu carrito</h1>
+  <div class="cartContainer">
     <div class="cart">
+      <div class="dFlex flexWrap">
       {{#each productsFromCart}}
       <div class="containerProductCart">
-        <li> Producto ID: {{id_producto}}</li>
-        <li>Id Carrito: {{id_carrito}}</li>
-        <li>Cantidad: {{id_carrito_item}}</li>
+        <li>Producto ID: {{id_producto}}</li>
+        <li>Cantidad: {{cantidad}}</li>
+        <li>Precio Unitario: {{precio}}</li>
         <form action="/removeProductFrom/{{id_carrito}}/{{id_producto}}" method="post">
           <input type="submit" value="Quitar" class="removeButton">
         </form>
       </div>
       {{/each}}
-
-      <form action="/buyCart" method="post">
-        <input type="hidden" name="data" value="{{data}}">
-        <input type="submit" value="Comprar" class="cardButton">
-      </form>
+      </div>
+      <div class=" dFlex justifyContentEnd">
+        <h2> Monto Total: {{totalPrecio}}</h2>
+        <form action="/buyCart" method="post">
+          <input type="hidden" name="data" value="{{data}}">
+          <input type="submit" value="Comprar" class="cardButton">
+        </form>  
+      </div>
     </div>
   </div>
 </div>

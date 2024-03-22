@@ -1,18 +1,39 @@
 {{> navbar }}
   <div class="dFlexDetailProduct">
       <div class="textDetails">
-        <h2>Id del producto: {{product.id}}</h2>
-        <h2>Nombre del producto: {{product.name}}</h2>
-        <h2>Precio: {{product.price}}$</h2>
-        <h2>Descripción: {{product.description}}</h2>
-        <h2>Categoría: {{product.category}}</h2>
-        <form action="/addProduct/{{product.id}}" method="get">
-          <input type="submit" value="Agregar al carrito" class="cardButton">
+        <div class="titleProduct">
+          <h1>{{product.name}}</h1>
+          <h2>{{product.category}}</h2>
+        </div>
+
+        <div class="details">
+          <h2>DETALLES</h2>
+          <p>{{product.description}}</p>
+        </div>
+
+        <div class="price">
+          <h2>{{product.price}}$</h2>
+        </div>
+
+        <h2>Cantidad:</h2>
+        <div class="contador">
+            <button id="boton-disminuir10" class="buttonDiscount">-10</button>
+            <button id="boton-disminuir" class="buttonDiscount">-1</button>
+            <span id="numero-conteo">0</span>
+            <button id="boton-aumentar1" class="buttonCount">+1</button>
+            <button id="boton-sumar10" class="buttonCount">+10</button>
+          </div>
+        <form action="/addProduct/{{product.id}}" method="post">
+          <input type="hidden" name="price" value={{product.price}}>
+          <input type="hidden" id="valor-conteo-hidden" name="cantidad" />
+          <input type="submit" value="Agregar al carrito" class="productIdButton">
         </form>
       </div>
+
       <img src="{{product.img}}" alt="" srcset="" class="imgDetail">       
   </div>
   {{>footer}}
+  <script src="../js/button.js"></script>
 
 
 

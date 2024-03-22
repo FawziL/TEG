@@ -1,8 +1,17 @@
-{{> navbar }}
-<form action="/putProduct/{{id}}/update" method="post">
-    Modicar producto con id: {{id}}
-    <input type="text" name="name">
-    <input type="number" name="price">
-    <input type="submit">
-</form>
+{{> navbarAdmin }}
+<main>
+    <form action="/putProduct/{{id}}/update" method="post" class="newProduct-form">
+        <h1>Modicar producto id: {{id}}</h1>
+        <label for="name" class="label">Nombre de Producto:</label>
+        <input type="text" name="name">
+        <label for="price" class="label">Precio de Producto:</label>
+        <input type="number" name="price">
+        <label for="description" class="label">Descripción de Producto:</label>
+        <input type="description" name="description">
+        <label for="category" class="label">Categoria de Producto:</label>
+        <input type="category" name="category">
+        <input type="submit" class="newProduct-button put" value="Editar">
+    </form>
+</main>
+
 {{>footer}}

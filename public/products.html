@@ -10,39 +10,31 @@
   <header>
     
     <nav class=".nav-container">
-      <button id="modo-toggle">Cambiar Modo</button>
       <a href="/">Home</a>
       <a href="/products">Productos</a>
-      <a href="/cart"> Carrito</a>
+      <a href="/cart">Carrito</a>
+      <a href="/order">Ordenes</a>
+      <a href="/orders">Orden U</a>
+      <a href="/productsAdmin">ADMIN C</a>
+      <a href="/users">Users</a>
       <a href='/logout'>Salir</a>
     </nav>
   </header>
 
-<main class="Product-formulary">
-
-    <section>
-      <h1>Ingrese nuevo producto</h1>
-    <div>
-
-    <form class="newProduct-form" action="/newProduct" method="post">
-      <label for="name" class="label"> Nombre de Producto</label>
-      <input type="text" name="name">
-
-      <label for="price" class="label"> Precio de Producto</label>
-      <input type="number" name="price">
-
-      <label for="description" class="label"> Cantidad en Inventario</label>
-      <input type="description" name="description">
-
-      <label for="category" class="label"> Categoria de Producto</label>
-      <input type="category" name="category">
-
-      <label for="img" class="label"> Imagen de Producto</label>
-      <input type="img" name="img">
-    
+<main>
+  <form class="newProduct-form" action="/newProduct" method="post" enctype="multipart/form-data">
+    <h1>Ingrese nuevo producto</h1>
+    <label for="name" class="label">Nombre de Producto:</label>
+    <input type="text" name="name">
+    <label for="price" class="label">Precio de Producto:</label>
+    <input type="number" name="price">
+    <label for="description" class="label">Descripción de Producto:</label>
+    <input type="description" name="description">
+    <label for="category" class="label">Categoria de Producto:</label>
+    <input type="category" name="category">
+    <label for="img" class="label">Imagen de Producto:</label>
+    <input type="file" name="img">
     <input class="newProduct-button" type="submit">
-
-  </div>
   </form>
 </main>
 

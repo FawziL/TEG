@@ -10,24 +10,21 @@ h1{
     border: none;
     justify-content: center;
 }
-
 .card{
     width: 280px;
     height: 320px;
     background-color: rgb(246, 246, 243);
     margin: 15px;
     text-align: center;
-    border-radius: 15px;
+    border-radius: 2px;
     box-shadow: 8px 8px 7px black;
 }
-
 .card img {
     height: 200px;
     width: 100%;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 2px 2px 0px 0px;
     border: solid 1px;
 }
-
 .cardButton{
     background-color: rgb(42, 42, 234);
     border-radius: 15px;
@@ -44,7 +41,18 @@ h1{
     font-size: 16px;
     margin-top: 10px;
 }
-
+.put{
+    background-color: rgb(35, 161, 39);
+}
+.put:hover{
+    background-color: rgb(26, 115, 29);
+}
+.delete{
+    background-color: rgb(180, 26, 26);
+}
+.delete:hover{
+    background-color: rgb(131, 21, 21);
+}
 /*  productID */
 .dFlexDetailProduct{
     display: flex;
@@ -55,8 +63,7 @@ h1{
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    border-style: solid;
-    border-radius: 16px;
+    box-shadow: 2px 2px 5px 2px;
 }
 .dFlexDetailProduct h2{
     margin: 10px;
@@ -64,46 +71,166 @@ h1{
 }
 .textDetails{
     width: 50%;
-    text-align: center;
     height: 100%;
     background-color: rgb(245, 247, 247);
-    border-radius: 12px 0px  0px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+.titleProduct{
+    width: 100%;
+    text-align:start;
+}
+.titleProduct h1{ 
+    text-transform: uppercase;
+    margin: 0px;
+    font-weight: 700;
+    margin-left: 10px;
+    text-align: start;
 }
 .imgDetail{
     width: 50%;
     height: 100%;
-    border-radius: 0px 12px 12px 0px
+}
+.details{
+    width: 100%;
+}
+.details p{
+    font-size: 14px;
+    line-height: 22px;
+    padding: 10px;
+}
+.price h2{
+    font-size: 26px;
+}
+.buttonDiscount{
+    padding: 4px;
+    border-style: none;
+    height: 34px;
+    width: 34px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(221, 3, 3);;
+    font-weight: bold;
+    margin: 4px;
+    border-radius: 2px;
+}
+.buttonCount{
+    padding: 4px;
+    border-style: none;
+    height: 34px;
+    width: 34px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(15, 155, 15);
+    font-weight: bold;
+    margin: 4px;
+    border-radius: 2px;
+}
+.buttonCount:hover{
+    background-color: rgb(14, 129, 14);
+    border-color: rgb(14, 129, 14);
+    box-shadow: 2px 2px 5px 2px;
+    cursor: pointer;
+    color: white;
+}
+.buttonDiscount:hover{
+    background-color: rgb(177, 5, 5);
+    border-color: rgb(177, 5, 5);
+    box-shadow: 1px 1px 5px 2px;
+    color: white;
+    cursor: pointer;
+}
+#numero-conteo{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px;
 }
 
-/*Carrito*/
-.removeButton{
-    background-color: rgb(186, 22, 30);
-    border-radius: 15px;
-    padding: 10px;
-    margin: 10px;
+.productIdButton{
+    background-color: rgb(42, 42, 234);
+    border-radius: 2px;
+    padding: 16px;
+    margin: 16px;
     border: none;
     color: white;
     cursor:pointer
 }
-.removeButton:hover{
-    background-color: rgb(120, 10, 16);
+.productIdButton:hover{
+    background-color: rgb(29, 29, 147);
+}
+
+/*Carrito*/
+.mainContainer{
+    min-height: 75vh;
+}
+.cartContainer{
+    margin: 50px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .cart{
     border-style: solid;
     padding: 15px;
-    height: 200px;
     border-radius: 26px;
     background-color: rgb(237, 240, 240);
-    display: flex;
+    max-width: 860px;
 }
 .containerProductCart{
     border-style: solid;
     margin: 10px;
     border-radius: 12px;
     padding: 15px;
-    width: 200px;
+    width: 186px;
     background-color: rgb(255, 255, 255);
 }
 .cart li{
     font-size: 18px;
+    list-style: none;
+}
+.cart h2{
+    padding-top: 20px;
+}
+.removeButton{
+    background-color: rgb(186, 22, 30);
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 0px;
+    border: none;
+    color: white;
+    cursor:pointer;
+    position: relative;
+    left: 90px;
+}
+.removeButton:hover{
+    background-color: rgb(120, 10, 16);
+}
+
+
+/*Ordenes*/
+.ordersContainer{
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    flex-wrap: wrap;
+}
+.containerOrder{
+    background-color: aqua;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px black;
+    padding: 15px;
+}
+.containerOrder li{
+    font-size: 16px;
+    margin: 3px;
+}
+.orderProducts{
+    border-style: solid;
+    border-radius: 5px;
+    margin: 15px;
+    padding: 5px;
 }
