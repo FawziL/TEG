@@ -16,13 +16,13 @@ h1{
     background-color: rgb(246, 246, 243);
     margin: 15px;
     text-align: center;
-    border-radius: 15px;
+    border-radius: 2px;
     box-shadow: 8px 8px 7px black;
 }
 .card img {
     height: 200px;
     width: 100%;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 2px 2px 0px 0px;
     border: solid 1px;
 }
 .cardButton{
@@ -63,8 +63,7 @@ h1{
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    border-style: solid;
-    border-radius: 4px;
+    box-shadow: 2px 2px 5px 2px;
 }
 .dFlexDetailProduct h2{
     margin: 10px;
@@ -72,18 +71,93 @@ h1{
 }
 .textDetails{
     width: 50%;
-    text-align: center;
     height: 100%;
     background-color: rgb(245, 247, 247);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 20px;
+}
+.titleProduct{
+    width: 100%;
+    text-align:start;
+}
+.titleProduct h1{ 
+    text-transform: uppercase;
+    margin: 0px;
+    font-weight: 700;
+    margin-left: 10px;
+    text-align: start;
 }
 .imgDetail{
     width: 50%;
     height: 100%;
-    border-radius: 0px 2px 2px 0px
+}
+.details{
+    width: 100%;
+}
+.details p{
+    font-size: 14px;
+    line-height: 22px;
+    padding: 10px;
+}
+.price h2{
+    font-size: 26px;
+}
+.buttonDiscount{
+    padding: 4px;
+    border-style: none;
+    height: 34px;
+    width: 34px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(221, 3, 3);;
+    font-weight: bold;
+    margin: 4px;
+    border-radius: 2px;
+}
+.buttonCount{
+    padding: 4px;
+    border-style: none;
+    height: 34px;
+    width: 34px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(15, 155, 15);
+    font-weight: bold;
+    margin: 4px;
+    border-radius: 2px;
+}
+.buttonCount:hover{
+    background-color: rgb(14, 129, 14);
+    border-color: rgb(14, 129, 14);
+    box-shadow: 2px 2px 5px 2px;
+    cursor: pointer;
+    color: white;
+}
+.buttonDiscount:hover{
+    background-color: rgb(177, 5, 5);
+    border-color: rgb(177, 5, 5);
+    box-shadow: 1px 1px 5px 2px;
+    color: white;
+    cursor: pointer;
+}
+#numero-conteo{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.productIdButton{
+    background-color: rgb(42, 42, 234);
+    border-radius: 2px;
+    padding: 16px;
+    margin: 16px;
+    border: none;
+    color: white;
+    cursor:pointer
+}
+.productIdButton:hover{
+    background-color: rgb(29, 29, 147);
 }
 
 /*Carrito*/
@@ -102,18 +176,19 @@ h1{
     padding: 15px;
     border-radius: 26px;
     background-color: rgb(237, 240, 240);
-    max-width: 1000px;
+    max-width: 860px;
 }
 .containerProductCart{
     border-style: solid;
     margin: 10px;
     border-radius: 12px;
     padding: 15px;
-    width: 220px;
+    width: 186px;
     background-color: rgb(255, 255, 255);
 }
 .cart li{
     font-size: 18px;
+    list-style: none;
 }
 .cart h2{
     padding-top: 20px;
@@ -128,7 +203,7 @@ h1{
     color: white;
     cursor:pointer;
     position: relative;
-    left: 120px;
+    left: 90px;
 }
 .removeButton:hover{
     background-color: rgb(120, 10, 16);
@@ -136,9 +211,15 @@ h1{
 
 
 /*Ordenes*/
+.ordersContainer{
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    flex-wrap: wrap;
+}
 .containerOrder{
     background-color: aqua;
-    height: 250px;
+    margin: 15px;
     border-radius: 10px;
     box-shadow: 5px 5px 5px black;
     padding: 15px;
@@ -152,42 +233,4 @@ h1{
     border-radius: 5px;
     margin: 15px;
     padding: 5px;
-}
-
-/*Producto ID*/
-
-.buttonDiscount{
-    padding: 2px;
-    border-style: none;
-    border-radius: 50%;
-    height: 32px;
-    width: 32px;
-    background-color: rgb(221, 3, 3);
-    font-weight: bold;
-    margin: 5px;
-}
-.buttonCount{
-    padding: 2px;
-    border-style: none;
-    border-radius: 50%;
-    height: 32px;
-    width: 32px;
-    background-color: rgb(15, 155, 15);
-    font-weight: bold;
-    margin: 5px;
-}
-.buttonCount:hover{
-    background-color: darkgreen;
-    box-shadow: 2px 2px 5px 2px;
-    cursor: pointer;
-}
-.buttonDiscount:hover{
-    background-color: rgb(124, 20, 20);
-    box-shadow: 2px 2px 5px 2px;
-    cursor: pointer;
-}
-#numero-conteo{
-    font-size: 18px;
-    font-weight: bold;
-    margin: 5px;
 }

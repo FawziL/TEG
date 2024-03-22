@@ -1,14 +1,12 @@
 {{> navbar }}
 <div class="mainContainer">
-  <h1>Tu carrito:</h1>
+  <h1>Tu carrito</h1>
   <div class="cartContainer">
     <div class="cart">
       <div class="dFlex flexWrap">
       {{#each productsFromCart}}
       <div class="containerProductCart">
-        <li> Producto ID: {{id_producto}}</li>
-        <li>Id Carrito: {{id_carrito}}</li>
-        <li>Id Item: {{id_carrito_item}}</li>
+        <li>Producto ID: {{id_producto}}</li>
         <li>Cantidad: {{cantidad}}</li>
         <li>Precio Unitario: {{precio}}</li>
         <form action="/removeProductFrom/{{id_carrito}}/{{id_producto}}" method="post">
