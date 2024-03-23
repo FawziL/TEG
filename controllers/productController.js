@@ -26,7 +26,7 @@ async function getProducts(req, res) {
   async function createProduct(req, res) {
     try {
       await service.createProduct(req.body.name, req.body.price, req.body.description, req.body.category, req.file.filename);
-      res.redirect('/products');
+      res.redirect('/productsAdmin');
     } catch (error) {
       res.status(500).json({
         success: false,
@@ -63,7 +63,7 @@ async function getProducts(req, res) {
   async function deleteProduct(req, res) {
     try {
       const user = await service.deleteProduct(req.params.id);
-      res.redirect('/cart');
+      res.redirect('/productsAdmin');
     } catch (error) {
       res.status(500).json({
         success: false,

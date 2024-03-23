@@ -10,8 +10,8 @@
   {{#each products}} 
     <div class="card">
       <img src="{{img}}" alt="{{img}}"> 
-      <h2>Id Producto: {{id}}</h2>
-      <h2>Nombre Producto: {{name}}</h2>
+      <h2>SKU: {{id}}</h2>
+      <h2>{{name}}</h2>
       <h2>Precio Producto: {{price}}$</h2>
       <a href="/product/{{id}}"><button  class="cardButton">Ver detalles</button></a>
       <a href="/putProduct/{{id}}"><button  class="cardButton put">Editar</button></a>

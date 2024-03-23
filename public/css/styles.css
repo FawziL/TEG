@@ -17,25 +17,15 @@
     --lg: 18px;
 
 }
-
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
 html {
     font-size: 62.5%;
     font-family: 'DM Sans', sans-serif;
 }
-
-
-.dark-mode {
-    background-color: #ffffff;
-    color: #fff;
-}
-
-
 header{
     position: relative;
     display: flex;
@@ -46,7 +36,6 @@ header{
     background-image: url(../assets/img/background-head.png);
     background-size: cover;
 }
-
 header div img{
     margin-left: 55px;
     height: 70px;
@@ -68,7 +57,6 @@ nav a:hover{
     color: var(--blue--contrast);
     margin: 10px;
 }
-
 main{
     width: 100%;
     height: 80vh;
@@ -96,47 +84,38 @@ main{
     align-items: center;
     text-align: center;
 }
-
 .form-container{
-    width: 320px;
+    width: 360px;
     border-radius: 15px;
     padding: 20px;
     background-color: #f8f9fa;
     box-shadow: 4px 4px 7px black;
 }
-
 .form-container h1 {
     text-align: center;
     margin: 15px;
 }
-
-
 .form a{
     font-size: var(--sm);
     color: var(--blue--contrast);
     text-decoration: none;
     text-align: center;
 }
-
-
 .label{
     font-size: var(--sm);
     font-weight: bold;
     margin-bottom: 4px;
 }
-
 .input{
-    background-color: var(--text-input-field);
+    background-color: #e6e5e5;
     border: none;
     border-radius: 8px;
     height: 30px;
     font-size: var(--md);
-    padding: 6px;
+    padding: 8px;
     margin-bottom: 12px;
-    width: 95%;
-    
+    width: 100%;
 }
-
 .primary-button{
     background-color: var(--blue--contrast);
     border-radius: 8px;
@@ -151,13 +130,13 @@ main{
 .primary-button:hover{
     background-color: #486259;
 }
-
 .login-button{
     margin-top: 14px;
     margin-bottom: 30px;
 }
-
-
+.signup-vh{
+    height: 90vh;
+}
 .signup-button {
     width: 100%;
     height: 50px;
@@ -169,13 +148,12 @@ main{
     border: solid 1px;
     border-color: var(--blue--contrast);
     cursor: pointer;
-    margin-top: 75px;
+    margin: 0px;
 }
 .signup-button:hover{
     background-color: #8e9c97;
     color: white;
 }
-
 footer{
     background-image: url(../assets/img/background-footer.png);
     width: 100%;
@@ -188,35 +166,29 @@ footer{
     line-height: 15px;
     color: white;
 }
-
 footer .footer-list{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 footer .footer-list li{
     list-style: none;
 }
-
 footer .footer-list li a{
     width: 25px;
     margin: 10px;
     text-decoration: none;
     list-style: none;
 }
-
 footer a{
     text-decoration: none;
     list-style: none;
     color: #244357;
 }
-
 footer .social-container a img{
     margin: 10px 10px;
     width: 30px;
 }
-
 footer .social-container a img:hover {
     transform:scale(1.1);
     cursor: pointer;
@@ -276,9 +248,7 @@ footer .social-container a img:hover {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    
 }
-
 .main-home .main-home-section1{
     width: 100%;
     height: auto;
@@ -288,7 +258,6 @@ footer .social-container a img:hover {
     z-index: 1;
     align-items: center;
 }
-
 .main-home .main-home-section2{
     width: 100%;
     height: auto;
@@ -298,33 +267,61 @@ footer .social-container a img:hover {
     z-index: 1;
     align-items: center;
 }
-
 .main-home-section1 h1{
     font-size: 5.6rem;
     color: rgb(186, 0, 0);
     font-weight: bold;
     line-height: 54px;
-    
+    animation: aparecerDesdeArriba 1s ease-in-out;
+}
+
+@keyframes aparecerDesdeArriba {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+}
+@keyframes aparecerDesdeAbajo {
+    from {
+      transform: translateY(+100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
 }
 
 .main-home-section1 h1 span {
     color: black;
 }
-
 .main-home-section1 h2 {
     font-size: 24px;
     margin: 15px;
     color: rgb(0, 0, 0);
+    animation: aparecerDesdeAbajo 1s ease-in-out;
 }
-
 .main-home-section1 div{
     margin-left: 60px; 
 }
-
 .main-home-section1 img{
     height: 70vh;
-    
+    animation: aparecerDesdeDerecha 1.5s ease-in-out;
 }
+@keyframes aparecerDesdeDerecha {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 .homeButton{
     background-color: #00BF63;
     height: 56px;
@@ -336,7 +333,8 @@ footer .social-container a img:hover {
     color: white;
     font-size: 22px;
     cursor:pointer;
-    /*background-color: rgb(123, 5, 5);*/
+    text-decoration: none;
+    animation: aparecerDesdeAbajo 1s ease-in-out;
 }
 
 .homeButton:hover{

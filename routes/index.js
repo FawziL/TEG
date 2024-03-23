@@ -12,7 +12,12 @@ const admin = require("../middlewares/isAdmin")
 const upload = require ('../multer/multer.js')
 
 router.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../public/home.html"));
+  const userRole = req.user?.role;
+  if (userRole === 1 || userRole === 2) {
+    res.redirect("/productsAdmin")
+  } else {
+    res.sendFile(path.resolve(__dirname, "../public/home.html"));
+  }
 });
 
 router.get('/users', auth, root, userController.getAllUsers)
