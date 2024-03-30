@@ -38,7 +38,8 @@ async function getProducts(req, res) {
   async function putProduct(req, res) {
     try {
       const productId = req.params.id;
-      res.render("putProduct", { id: productId });
+      const product = await service.getProduct(productId);
+      res.render("putProduct", { id: productId, product });
     } catch (error) {
       res.status(500).json({
         success: false,

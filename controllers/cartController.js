@@ -6,6 +6,10 @@ async function getProductsFromCart(req, res) {
     let totalPrecio = 0;
 
     const dataCarrito = {
+      userId: req.user.id,
+      user: req.user.first_name + ' ' + req.user.last_name,
+      email: req.user.email,
+      phoneNumber: req.user.phone_number,
       products: productsFromCart.map(item => {
         totalPrecio += item.precio * item.cantidad;
         return {
@@ -17,12 +21,8 @@ async function getProductsFromCart(req, res) {
           total: item.precio * item.cantidad
         };
       }),
-      user: req.user.username,
-      userId: req.user.id,
-      precioTotal: totalPrecio
+      precioTotal: totalPrecio,
     };
-    const admin = req.user.role
-    console.log(admin)
     const data = JSON.stringify(dataCarrito)
     res.render('cart', { productsFromCart, data, totalPrecio });
   } catch (error) {

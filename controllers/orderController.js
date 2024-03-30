@@ -3,8 +3,7 @@ const service = require('../services/orderService');
 async function getOrders(req, res) {
   try {
     const orderUser = await service.getOrders();
-    console.log(orderUser)
-    res.render('orderUser', {orderUser});
+    res.render('ordersAdmin', {orderUser});
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -23,9 +22,22 @@ async function getOrder(req, res) {
         error: error.message,
       });
     }
+}
+
+async function putStatusCart(req, res) {
+  try {
+    await service.putStatusCart(req.params.id, req.body.status);
+    res.redirect('/orders')
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
+}
 
 module.exports = {
     getOrders,
-    getOrder
+    getOrder,
+    putStatusCart,
 };

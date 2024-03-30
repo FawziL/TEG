@@ -29,7 +29,15 @@ app.engine(
       runtimeOptions: {
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true
-      }
+      },
+      helpers: {
+        ifEqual: function(v1, v2, options) {
+            if (v1 === v2) {
+                return options.fn(this);
+            }
+            return options.inverse(this);
+        }
+    }
     })
 );
 app.set('view engine', '.hbs');

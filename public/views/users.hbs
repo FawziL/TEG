@@ -1,13 +1,28 @@
 {{> navbarAdmin }}
-  <div>
+    <h1>Usuarios</h1>
+  <main class="flexWrap">
     {{#each users}} 
-      <div>
-        <p>{{id}}</p>
-        <p>{{username}}</p>
+      <div class="cardUser">
+        <p><b>Id:</b> {{id}}</p>
+        <p><b>Usuario:</b> {{username}}</p>
+        <p><b>Nombre:</b> {{first_name}} {{last_name}}</p>
+        <p><b>Email:</b> {{email}}</p>
+        <p><b>Número telefónico:</b> {{phone_number}}</p>
+        <p><b>Rol:</b> {{role}}</p>
+        {{#ifEqual role 2}}
+          <form action="/role/{{id}}" method="POST">
+            <input type="hidden" name="role" value="3">
+            <input type="submit" value="Quitar privilegios">
+          </form>
+        {{else}}
+          <form action="/role/{{id}}" method="POST">
+            <input type="hidden" name="role" value="2">
+            <input type="submit" value="Dar privilegios">
+          </form>
+        {{/ifEqual}}
       </div>
     {{/each}}
-</div>
-
+  </main>
 {{>footer}}
 
 

@@ -12,6 +12,18 @@ async function getAllUsers(req, res) {
   }
 }
 
+async function putRole(req, res) {
+  try {
+    await service.putRole(req.params.id, req.body.role);
+    res.redirect('/users')
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+}
+
 async function logout (req, res, next) {
   let user = req.user.username;
   req.logout(function (err) {
@@ -25,5 +37,6 @@ async function logout (req, res, next) {
 
 module.exports = {
   getAllUsers,
+  putRole,
   logout,
 };

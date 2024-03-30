@@ -1,17 +1,26 @@
 {{> navbarAdmin }}
 <main>
-    <form action="/putProduct/{{id}}/update" method="post" class="newProduct-form">
-        <h1>Modicar producto id: {{id}}</h1>
-        <label for="name" class="label">Nombre de Producto:</label>
-        <input type="text" name="name">
-        <label for="price" class="label">Precio de Producto:</label>
-        <input type="number" name="price">
-        <label for="description" class="label">Descripción de Producto:</label>
-        <input type="description" name="description">
-        <label for="category" class="label">Categoria de Producto:</label>
-        <input type="category" name="category">
-        <input type="submit" class="newProduct-button put" value="Editar">
-    </form>
+    <div class="dFlex update">
+        <div class="cardUpdate">
+            <p><b>Nombre: </b>{{product.name}}</p>
+            <p><b>Precio: </b>{{product.price}}</p>
+            <p><b>Descripción: </b>{{product.description}}</p>
+            <p><b>Categoría: </b>{{product.category}}</p>
+            <img src="{{product.img}}" alt="">
+        </div>
+        <form action="/putProduct/{{id}}/update" method="post" class="formUpdate">
+            <h2>Modicar producto id: {{id}}</h2>
+            <label for="name" class="label">Nombre de Producto:</label>
+            <input type="text" name="name">
+            <label for="price" class="label">Precio de Producto:</label>
+            <input type="number" name="price">
+            <label for="description" class="label">Descripción de Producto:</label>
+            <textarea name="description" id="description" cols="30" rows="3"></textarea>
+            <label for="category" class="label">Categoria de Producto:</label>
+            <input type="category" name="category">
+            <input type="submit" class="newProduct-button put" value="Editar">
+        </form>
+    </div>
 </main>
 
 {{>footer}}

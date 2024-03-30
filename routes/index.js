@@ -52,6 +52,10 @@ router.get('/orders', auth, admin, orderController.getOrders);
 
 router.get('/order', auth, orderController.getOrder);
 
+router.post('/role/:id', auth, root, userController.putRole)
+
+router.post('/status/:id', auth, admin, orderController.putStatusCart)
+
 router.get('/login', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../public/login.html"))
 });

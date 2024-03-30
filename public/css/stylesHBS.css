@@ -237,3 +237,66 @@ h1{
     margin: 15px;
     padding: 5px;
 }
+
+/*putProduct*/
+.update{
+    border: solid 2px black;
+    box-shadow: 2px 4px 15px 5px #000;
+    background-color: #eff0ef;
+    padding: 5px;
+}
+.update h2{
+    width: 80%;
+    text-align: start;
+}
+.cardUpdate{
+    width: 260px;
+    margin: 15px;
+    border-radius: 5px;
+}
+.cardUpdate p{
+    font-size: 16px;
+    margin: 5px;
+}
+.cardUpdate img{
+    height: 200px;
+    width: 100%;
+}
+
+.formUpdate{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    font-size: var(--sm);
+    text-decoration: none;
+    text-align: center;
+}
+.formUpdate label {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-align: start;
+    width: 80%;
+    color: #000;
+}
+.formUpdate input, textarea {
+    padding: 6px;
+    width: 80%;
+}
+
+/*Users*/
+
+.cardUser{
+    border: solid 2px black;
+    box-shadow: 2px 4px 15px 5px #000;
+    background-color: #eff0ef;
+    padding: 5px;
+    margin: 15px;
+    width: 300px;
+    min-height: 150px;
+    border-radius: 5px;
+}
+.cardUser p{
+    font-size: 16px;
+}
