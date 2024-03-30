@@ -220,6 +220,11 @@ main{
     display: flex;
     flex-direction: column;
 }
+
+.main-home2{
+    height: 75vh;
+}
+
 .main-home .main-home-section1{
     width: 100%;
     height: 80vh;
@@ -269,8 +274,8 @@ main{
 }
 
 .main-home-section2 div img{
-    transform:scaleX(-1);
     height: 500px;
+    animation: aparecerDesdeIzquierda 1.5s ease-in-out;
 }
 
 .main-home-section2 article{
@@ -466,6 +471,18 @@ main{
       opacity: 1;
     }
   }
+  
+@keyframes aparecerDesdeIzquierda {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
 .homeButton{
     background-color: #00BF63;
     height: 56px;
