@@ -9,17 +9,19 @@
         <p><b>Email:</b> {{email}}</p>
         <p><b>Número telefónico:</b> {{phone_number}}</p>
         <p><b>Rol:</b> {{role}}</p>
+        <div class="options">
         {{#ifEqual role 2}}
           <form action="/role/{{id}}" method="POST">
             <input type="hidden" name="role" value="3">
-            <input type="submit" value="Quitar privilegios">
+            <input type="submit" value="Quitar privilegios" class="red">
           </form>
         {{else}}
           <form action="/role/{{id}}" method="POST">
             <input type="hidden" name="role" value="2">
-            <input type="submit" value="Dar privilegios">
+            <input type="submit" value="Dar privilegios" class="green">
           </form>
         {{/ifEqual}}
+        </div>
       </div>
     {{/each}}
   </main>

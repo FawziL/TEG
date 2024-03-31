@@ -14,7 +14,6 @@
     <nav class=".nav-container">
       <a href="/">Home</a>
       <a href="/products">Productos</a>
-      <a href="/register">Register</a>
       <a href="/login">Login</a>
     </nav>
   </header>
@@ -27,22 +26,22 @@
           <form action="/register" method="post"  class="form">
               <div>
                 <label for="username" class="label"> Nombre de Usuario</label>
-                <input type="text" name="username" placeholder="Vikthor" class="input input-password">
+                <input type="text" name="username" placeholder="Vikthor" class="input input-password" required>
 
                 <label for="password" class="label">Contraseña</label>
-                <input type="password" name="password" placeholder="***********" class="input input-password">
+                <input type="password" name="password" placeholder="***********" class="input input-password" required>
 
                 <label for="email" class="label">Email</label>
-                <input type="email" name="email" placeholder="ejemplo@email.com" class="input input-password">
+                <input type="email" name="email" placeholder="ejemplo@email.com" class="input input-password" required>
 
                 <label for="phoneNumber" class="label">Número Telefónico</label>
-                <input type="tex" name="phoneNumber" placeholder="4149541095" class="input input-password">
+                <input type="tex" name="phoneNumber" placeholder="4149541095" class="input input-password" required>
                 
                 <label for="firstName" class="label">Nombres</label>
-                <input type="tex" name="firstName" placeholder="Alguien" class="input input-password">
+                <input type="tex" name="firstName" placeholder="Alguien" class="input input-password" required>
                 
                 <label for="lastName" class="label">Apellidos</label>
-                <input type="tex" name="lastName" placeholder="Alguien algo" class="input input-password">
+                <input type="tex" name="lastName" placeholder="Alguien algo" class="input input-password" required>
               </div>
               
               <input type="submit" value="Registrarse" class="primary-button login-button"></input>              

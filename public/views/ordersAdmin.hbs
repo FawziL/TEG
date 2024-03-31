@@ -19,18 +19,20 @@
         {{/each}}
         </div>
         <li>Monto total: {{precio_total}}</li>
+        <div class="options dFlex">
           <form action="/status/{{id_orden_compra}}" method="POST">
             <input type="hidden" name="status" value="Pendiente">
-            <input type="submit" value="Pendiente">
+            <input type="submit" value="Pendiente" class="red">
           </form>
           <form action="/status/{{id_orden_compra}}" method="POST">
             <input type="hidden" name="status" value="Pagada">
-            <input type="submit" value="Pagada">
+            <input type="submit" value="Pagada" class="blue">
           </form>
           <form action="/status/{{id_orden_compra}}" method="POST">
             <input type="hidden" name="status" value="Completada">
-            <input type="submit" value="Completada">
-          </form>
+            <input type="submit" value="Completada" class="green">
+          </form>         
+        </div>
       </div>
     {{/each}}
   </div>

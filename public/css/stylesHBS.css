@@ -6,6 +6,7 @@ h1{
 .dFlexProducts{
     display: flex;
     margin: 25px auto;
+    margin-top: 10px;
     width: 86%;
     min-height: 70vh;
     border: none;
@@ -42,18 +43,6 @@ h1{
 .card h3{
     font-size: 16px;
     margin-top: 10px;
-}
-.put{
-    background-color: rgb(35, 161, 39);
-}
-.put:hover{
-    background-color: rgb(26, 115, 29);
-}
-.delete{
-    background-color: rgb(180, 26, 26);
-}
-.delete:hover{
-    background-color: rgb(131, 21, 21);
 }
 /*  productID */
 .dFlexDetailProduct{
@@ -299,4 +288,45 @@ h1{
 }
 .cardUser p{
     font-size: 16px;
+    padding: 5px 5px 0px 5px;
+    margin: 0px;
+}
+
+.orderProducts p{
+    font-size: 1.4rem;
+    margin-bottom: 0px;
+    line-height: 1.8rem;
+}
+.options{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.options input{
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+    border-style: none;
+    margin: 5px;
+}
+.red{
+    background-color: rgb(186, 22, 30);
+}
+.blue{
+    background-color: rgb(42, 42, 234);
+}
+.green{
+    background-color: rgb(15, 155, 15);
+}
+.red:hover{
+    background-color: rgb(150, 19, 25);
+    cursor: pointer;
+}
+.blue:hover{
+    background-color: rgb(29, 29, 147);
+    cursor: pointer;
+}
+.green:hover{
+    background-color: rgb(14, 129, 14);
+    cursor: pointer;
 }

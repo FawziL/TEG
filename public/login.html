@@ -13,7 +13,6 @@
   <nav class=".nav-container">
     <a href="/">Home</a>
     <a href="/products">Productos</a>
-    <a href="/cart">Carrito</a>
     <a href="/register">Register</a>
   </nav>
   </header>
@@ -25,13 +24,11 @@
 
         <form action="/login" method="post"  class="form">
             <div>
-            
-            <label for="username" class="label"> Nombre de Usuario</label>
-            <input type="text" id="name" name="username" placeholder="Vikthor" class="input input-password">
+              <label for="username" class="label"> Nombre de Usuario</label>
+              <input type="text" id="name" name="username" placeholder="Vikthor" class="input input-password" required>
 
-            <label for="password" class="label">Password </label>
-            <input type="password" id="password" name="password" placeholder="***********" class="input input-password">
-
+              <label for="password" class="label">Password </label>
+              <input type="password" id="password" name="password" placeholder="***********" class="input input-password" required>
             </div>
             
             <input type="submit" value="Iniciar Sesion" class="primary-button login-button"></input>
