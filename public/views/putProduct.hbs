@@ -11,13 +11,13 @@
         <form action="/putProduct/{{id}}/update" method="post" class="formUpdate">
             <h2>Modicar producto id: {{id}}</h2>
             <label for="name" class="label">Nombre de Producto:</label>
-            <input type="text" name="name">
+            <input type="text" name="name" required>
             <label for="price" class="label">Precio de Producto:</label>
-            <input type="number" name="price">
+            <input type="number" name="price" required>
             <label for="description" class="label">Descripción de Producto:</label>
-            <textarea name="description" id="description" cols="30" rows="3"></textarea>
+            <textarea name="description" id="description" cols="30" rows="3" required></textarea>
             <label for="category" class="label">Categoria de Producto:</label>
-            <input type="category" name="category">
+            <input type="category" name="category" required>
             <input type="submit" class="newProduct-button green" value="Editar">
         </form>
     </div>

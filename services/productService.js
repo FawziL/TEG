@@ -65,11 +65,24 @@ async function getProduct(id) {
     };
   }
 }
+
+async function getProductByCategory(category) {
+  try {
+    const result = await pool.query(`SELECT * FROM productos WHERE category = $1`, [category]);
+    return result.rows;
+  } catch (error) {
+    return{
+      success: false,
+      error: error.message,
+    };
+  }
+}
   
 module.exports = {
   getProducts,
   createProduct,
    putProduct,
   deleteProduct,
-  getProduct
+  getProduct,
+  getProductByCategory 
 };

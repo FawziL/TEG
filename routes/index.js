@@ -38,6 +38,8 @@ router.get('/product/:id', productController.getProduct);
 
 router.get('/products', productController.getProducts);
 
+router.get('/products/:category', productController.getProductByCategory);
+
 router.get('/productsAdmin', auth, admin, productController.getProductsAdmin);
 
 router.get('/cart', auth, cartController.getProductsFromCart);
