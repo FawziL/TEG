@@ -1,14 +1,27 @@
-<header>
-  <div>
-      <img src="../../assets/img/IMAGEN CORPORATIVA.png">
-  </div>
-  <nav class=".nav-container">
-    <a href="/">Home</a>
-    <a href="/cart">Carrito</a>
-    <a href="/order">Ordenes</a>
-    <a href='/logout'>Salir</a>
-  </nav>
-</header>
+{{#ifEqual user undefined}}
+  <header>
+    <div>
+        <img src="../../assets/img/IMAGEN CORPORATIVA.png">
+    </div>
+    <nav class=".nav-container">
+      <a href="/">Home</a>
+      <a href="/cart">Carrito</a>
+      <a href='/login'>Login</a>
+    </nav>
+  </header>
+{{else}}
+  <header>
+    <div>
+        <img src="../../assets/img/IMAGEN CORPORATIVA.png">
+    </div>
+    <nav class=".nav-container">
+      <a href="/">Home</a>
+      <a href="/cart">Carrito</a>
+      <a href="/order">Ordenes</a>
+      <a href='/logout'>Salir</a>
+    </nav>
+  </header>
+{{/ifEqual}}
   <h1>Nuestros trajes son de la mayor calidad</h1>
   <div class="dFlexProducts">
     {{#each products}} 

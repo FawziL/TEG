@@ -3,7 +3,8 @@ const service = require('../services/productService');
 async function getProducts(req, res) {
     try {
       const products = await service.getProducts();
-      res.render('products', { products });
+      const user = req?.user;
+      res.render('products', { products, user });
     } catch (error) {
       res.status(500).json({
         success: false,
