@@ -85,6 +85,20 @@ async function getProducts(req, res) {
     }
   }
 
+  async function getProductByCategory(req, res) {
+    try {
+      const products = await service.getProductByCategory(req.params.category);
+      console.log(products)
+      res.render('products', { products });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+
   module.exports = {
     getProductsAdmin,
     getProducts,
@@ -92,5 +106,6 @@ async function getProducts(req, res) {
     putProduct,
     updateProduct,
     deleteProduct,
-    getProduct
+    getProduct,
+    getProductByCategory
   };

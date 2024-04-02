@@ -173,7 +173,7 @@ main{
     align-items: center;
     width: 300px;
     border: solid 2px black;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 20px;
     background-color:#eff0ef;
     font-size: var(--sm);
@@ -199,7 +199,7 @@ main{
     color:#000;
 }
 .newProduct-button{
-    background-color: var(--blue--contrast);
+    background-color: rgb(15, 155, 15);
     border-radius: 4px;
     border: none;
     color: var(--white);
@@ -211,7 +211,8 @@ main{
     margin-top: 5px;
 }
 .newProduct-button:hover{
-    background-color: #394A51;
+    background-color: rgb(14, 129, 14);
+    cursor: pointer;
 }
 
 .main-home{
@@ -545,5 +546,45 @@ footer .social-container a img{
 footer .social-container a img:hover {
     transform:scale(1.1);
     cursor: pointer;
+}
+
+.product-filter{
+    height: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.product-filter li{
+    margin: 10px;
+    list-style: none;
+}
+
+.product-filter li a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.product-filter li a:hover{
+    color: var(--white);
+    background-color: #244357b0;
+    transition: 500ms;
+
+}
+
+.content-product-filter {
+    width: 72.5rem;
+    height: 0.2rem;
+    margin: 5px auto;
+    background-color: #244357;
+}
+
+#content2 {
+    margin-top: 25px;
 }
 

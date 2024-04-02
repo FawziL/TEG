@@ -27,15 +27,15 @@
   <form class="newProduct-form" action="/newProduct" method="post" enctype="multipart/form-data">
     <h1>Ingrese nuevo producto</h1>
     <label for="name" class="label">Nombre de Producto:</label>
-    <input type="text" name="name">
+    <input type="text" name="name" required>
     <label for="price" class="label">Precio de Producto:</label>
-    <input type="number" name="price">
+    <input type="number" name="price" required>
     <label for="description" class="label">Descripción de Producto:</label>
-    <input type="description" name="description">
+    <textarea name="description" id="description" cols="30" rows="3" required></textarea>
     <label for="category" class="label">Categoria de Producto:</label>
-    <input type="category" name="category">
+    <input type="category" name="category" required>
     <label for="img" class="label">Imagen de Producto:</label>
-    <input type="file" name="img">
+    <input type="file" name="img" required>
     <input class="newProduct-button" type="submit">
   </form>
 </main>
@@ -47,9 +47,9 @@
 </ul>
 <a href="mailto:contacto@empresa.com">Contáctenos</a>
 <div class="social-container">
-<a><img src="./assets/icons/whatsapp_icon.svg"></a>
-<a><img src="./assets/icons/instagram_icon.svg"></a>
-<a><img src="./assets/icons/facebook-icons.svg"></a>
+  <a href="https://api.whatsapp.com/send?phone=584149541095&text=Hola!%20Me%20gustaría%20hablar%20contigo%20sobre%20tu%20producto" target="_blank"><img src="./assets/icons/whatsapp_icon.svg" /></a>
+  <a href="http://instagram.com" target="_blank"><img src="./assets/icons/instagram_icon.svg"/></a>
+  <a href="http://facebook.com" target="_blank"><img src="./assets/icons/facebook-icons.svg" /></a>
 </div>
 <p>&copy; 2024 Imagen Corporativa U.I.C. Todos los derechos reservados.</p>
 </footer>  
