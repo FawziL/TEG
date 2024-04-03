@@ -76,7 +76,8 @@ async function getProducts(req, res) {
   async function getProduct(req, res) {
     try {
       const product = await service.getProduct(req.params.id);
-      res.render('productID', { product });
+      const user = req?.user;
+      res.render('productID', { product, user });
     } catch (error) {
       res.status(500).json({
         success: false,
@@ -88,8 +89,9 @@ async function getProducts(req, res) {
   async function getProductByCategory(req, res) {
     try {
       const products = await service.getProductByCategory(req.params.category);
+      const user = req?.user;
       console.log(products)
-      res.render('products', { products });
+      res.render('products', { products, user });
     } catch (error) {
       res.status(500).json({
         success: false,

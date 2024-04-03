@@ -3,7 +3,6 @@ module.exports = (req, res, next) => {
     if (userRole === 1 || userRole === 2) {
       next();
     } else {
-      res.json({Error: "No tienes permiso de estar aquí, chismoso"})
-      return;
+      return res.json({Error: 403, Mesage: "No tienes permiso de entrar a esta ruta."})
     }
   };
