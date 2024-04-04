@@ -50,12 +50,8 @@ async function getProducts(req, res) {
   }
   const updateProduct = async (req, res) => {
     try {
-      const product = await service.putProduct(req.body.name, req.body.price, req.body.description, req.body.category, req.params.id)
-      res.status(201).json({
-        success: true,
-        data: product,
-        envio: "El producto fue editado"
-      });
+      await service.putProduct(req.body.name, req.body.price, req.body.description, req.body.category, req.params.id)
+      res.redirect('/productsAdmin');
     } catch (err) {
       console.log(err);
     }
