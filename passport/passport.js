@@ -35,11 +35,52 @@ passport.deserializeUser(async (id, done) => {
 passport.register = async (username, password, email, phoneNumber, firstName, lastName) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
+  const createTable = `
+  SELECT EXISTS (
+    SELECT 1
+    FROM   information_schema.tables 
+    WHERE  table_schema = 'public'
+    AND    table_name = 'usuarios'
+  );
+  `;
+  const resultTable = await pool.query(createTable);
+  if(!resultTable.rows[0].exists){
+    const query = `
+      CREATE TABLE usuarios (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        username VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        role VARCHAR(255) NOT NULL,
+        phone_number VARCHAR(255) NOT NULL,
+        first_name VARCHAR(255) NOT NULL,
+        last_name VARCHAR(255) NOT NULL
+      );`;
+    await pool.query(query);
+  }
+
   // Registrar el usuario en la base de datos
   const user = await db.query(
   'INSERT INTO usuarios (username, password, email, role, phone_number, first_name, last_name) VALUES ($1, $2, $3, $4, $5, $6, $7)  RETURNING *', 
-  [username, hashedPassword, email, 3, phoneNumber, firstName, lastName]);
+  [username, hashedPassword, email, 1, phoneNumber, firstName, lastName]);
 
+  const createTableCart = `
+  SELECT EXISTS (
+    SELECT 1
+    FROM   information_schema.tables 
+    WHERE  table_schema = 'public'
+    AND    table_name = 'carrito'
+  );
+  `;
+  const resultTableCart = await pool.query(createTableCart);
+  if(!resultTableCart.rows[0].exists){
+    const query = `
+      CREATE TABLE carrito (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        id_usuario INT NOT NULL
+      );`;
+    await pool.query(query);
+  }
   // Crear el carrito del usuario en la base de datos
   const cart  = await db.query('INSERT INTO carrito (id_usuario) VALUES ($1) RETURNING *', [user.rows[0].id]);
 
