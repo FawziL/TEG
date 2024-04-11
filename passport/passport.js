@@ -43,7 +43,7 @@ passport.register = async (username, password, email, phoneNumber, firstName, la
     AND    table_name = 'usuarios'
   );
   `;
-  const resultTable = await pool.query(createTable);
+  const resultTable = await db.query(createTable);
   if(!resultTable.rows[0].exists){
     const query = `
       CREATE TABLE usuarios (
@@ -56,7 +56,7 @@ passport.register = async (username, password, email, phoneNumber, firstName, la
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL
       );`;
-    await pool.query(query);
+    await db.query(query);
   }
 
   // Registrar el usuario en la base de datos
@@ -72,14 +72,14 @@ passport.register = async (username, password, email, phoneNumber, firstName, la
     AND    table_name = 'carrito'
   );
   `;
-  const resultTableCart = await pool.query(createTableCart);
+  const resultTableCart = await db.query(createTableCart);
   if(!resultTableCart.rows[0].exists){
     const query = `
       CREATE TABLE carrito (
         id INT PRIMARY KEY AUTO_INCREMENT,
         id_usuario INT NOT NULL
       );`;
-    await pool.query(query);
+    await db.query(query);
   }
   // Crear el carrito del usuario en la base de datos
   const cart  = await db.query('INSERT INTO carrito (id_usuario) VALUES ($1) RETURNING *', [user.rows[0].id]);
