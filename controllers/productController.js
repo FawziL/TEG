@@ -27,7 +27,7 @@ async function getProducts(req, res) {
   async function createProduct(req, res) {
     try {
       await service.createProduct(req.body.name, req.body.price, req.body.description, req.body.category, req.file.filename);
-      res.redirect('/productsAdmin');
+      res.redirect('/newProduct');
     } catch (error) {
       res.status(500).json({
         success: false,

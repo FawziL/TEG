@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
 router.get('/users', auth, root, userController.getAllUsers)
 
-router.get('/newProduct', auth, admin, (req, res) => {
+router.get('/newProduct', (req, res) => {
   res.sendFile(path.join(__dirname, "../public/products.html"))
 });
 
