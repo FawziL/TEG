@@ -46,16 +46,16 @@ passport.register = async (username, password, email, phoneNumber, firstName, la
   const resultTable = await db.query(createTable);
   if(!resultTable.rows[0].exists){
     const query = `
-      CREATE TABLE usuarios (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        username VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        role VARCHAR(255) NOT NULL,
-        phone_number VARCHAR(255) NOT NULL,
-        first_name VARCHAR(255) NOT NULL,
-        last_name VARCHAR(255) NOT NULL
-      );`;
+    CREATE TABLE usuarios (
+      id SERIAL PRIMARY KEY,
+      username VARCHAR(255) UNIQUE NOT NULL,
+      password VARCHAR(255) NOT NULL,
+      email VARCHAR(255) UNIQUE NOT NULL,
+      role VARCHAR(255) NOT NULL,
+      phone_number VARCHAR(255) NOT NULL,
+      first_name VARCHAR(255) NOT NULL,
+      last_name VARCHAR(255) NOT NULL
+    );`
     await db.query(query);
   }
 
@@ -75,10 +75,11 @@ passport.register = async (username, password, email, phoneNumber, firstName, la
   const resultTableCart = await db.query(createTableCart);
   if(!resultTableCart.rows[0].exists){
     const query = `
-      CREATE TABLE carrito (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        id_usuario INT NOT NULL
-      );`;
+    CREATE TABLE carrito (
+      id SERIAL PRIMARY KEY,
+      id_usuario INT NOT NULL,
+      FOREIGN KEY (id_usuario) REFERENCES usuarios(id) 
+    );`;
     await db.query(query);
   }
   // Crear el carrito del usuario en la base de datos
