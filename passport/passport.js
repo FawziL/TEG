@@ -33,59 +33,67 @@ passport.deserializeUser(async (id, done) => {
 });
 
 passport.register = async (username, password, email, phoneNumber, firstName, lastName) => {
-  const hashedPassword = await bcrypt.hash(password, 10);
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    // Crear tablas sí es necesario
 
-  const createTable = `
-  SELECT EXISTS (
-    SELECT 1
-    FROM   information_schema.tables 
-    WHERE  table_schema = 'public'
-    AND    table_name = 'usuarios'
-  );
-  `;
-  const resultTable = await db.query(createTable);
-  if(!resultTable.rows[0].exists){
-    const query = `
-    CREATE TABLE usuarios (
-      id SERIAL PRIMARY KEY,
-      username VARCHAR(255) UNIQUE NOT NULL,
-      password VARCHAR(255) NOT NULL,
-      email VARCHAR(255) UNIQUE NOT NULL,
-      role VARCHAR(255) NOT NULL,
-      phone_number VARCHAR(255) NOT NULL,
-      first_name VARCHAR(255) NOT NULL,
-      last_name VARCHAR(255) NOT NULL
-    );`
-    await db.query(query);
+    const createTablePromises = [];
+    if (!await tableExists('usuarios')) {
+        createTablePromises.push(db.query(`
+          CREATE TABLE usuarios (
+            id SERIAL PRIMARY KEY,
+            username VARCHAR(255) UNIQUE NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            email VARCHAR(255) UNIQUE NOT NULL,
+            role INTEGER NOT NULL,
+            phone_number VARCHAR(255) NOT NULL,
+            first_name VARCHAR(255) NOT NULL,
+            last_name VARCHAR(255) NOT NULL
+          );`));
+    }
+    if (!await tableExists('carrito')) {
+        createTablePromises.push(db.query(`
+          CREATE TABLE carrito (
+            id SERIAL PRIMARY KEY,
+            id_usuario INT NOT NULL,
+            FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+          );`));
+    }
+    await Promise.all(createTablePromises); 
+
+    // Comprobar sí user eiste
+    const userExists = await db.query('SELECT * FROM usuarios WHERE username = $1 OR email = $2', [username, email]);
+    if (userExists.rowCount > 0) {
+      throw new Error('Nombre de usuario o correo electrónico ya existen');
+    }
+    
+    // Registrar usuario
+    const user = await db.query(
+      'INSERT INTO usuarios (username, password, email, role, phone_number, first_name, last_name) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      [username, hashedPassword, email, 1, phoneNumber, firstName, lastName]
+    );
+    // Crear el Carrito
+    const cart = await db.query('INSERT INTO carrito (id_usuario) VALUES ($1) RETURNING *', [user.rows[0].id]);
+    return { success: true, usuario: user.rows[0], carrito: cart.rows[0] };
+
+  } catch (error) {
+    return { error: error.message };
   }
-
-  // Registrar el usuario en la base de datos
-  const user = await db.query(
-  'INSERT INTO usuarios (username, password, email, role, phone_number, first_name, last_name) VALUES ($1, $2, $3, $4, $5, $6, $7)  RETURNING *', 
-  [username, hashedPassword, email, 1, phoneNumber, firstName, lastName]);
-
-  const createTableCart = `
-  SELECT EXISTS (
-    SELECT 1
-    FROM   information_schema.tables 
-    WHERE  table_schema = 'public'
-    AND    table_name = 'carrito'
-  );
-  `;
-  const resultTableCart = await db.query(createTableCart);
-  if(!resultTableCart.rows[0].exists){
-    const query = `
-    CREATE TABLE carrito (
-      id SERIAL PRIMARY KEY,
-      id_usuario INT NOT NULL,
-      FOREIGN KEY (id_usuario) REFERENCES usuarios(id) 
-    );`;
-    await db.query(query);
-  }
-  // Crear el carrito del usuario en la base de datos
-  const cart  = await db.query('INSERT INTO carrito (id_usuario) VALUES ($1) RETURNING *', [user.rows[0].id]);
-
-  return { success: true, usuario: user.rows[0], carrito: cart.rows[0]  };
 };
+
+async function tableExists(tableName) {
+  const result = await db.query(
+    `
+    SELECT EXISTS (
+      SELECT 1
+      FROM information_schema.tables
+      WHERE table_schema = 'public'
+      AND table_name = $1
+    );
+    `,
+    [tableName]
+  );
+  return result.rows[0].exists;
+}
 
 module.exports = passport;

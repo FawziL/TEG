@@ -37,7 +37,7 @@ async function putStatusCart(req, res) {
 }
 
 module.exports = {
-    getOrders,
-    getOrder,
-    putStatusCart,
+  getOrders,
+  getOrder,
+  putStatusCart,
 };

@@ -22,11 +22,11 @@ router.get('/', (req, res) => {
 
 router.get('/users', auth, root, userController.getAllUsers)
 
-router.get('/newProduct', (req, res) => {
+router.get('/newProduct', auth, admin, (req, res) => {
   res.sendFile(path.join(__dirname, "../public/products.html"))
 });
 
-router.post('/newProduct', upload.single('img'), productController.createProduct);
+router.post('/newProduct', auth, admin, upload.single('img'), productController.createProduct);
 
 router.get('/putProduct/:id', auth, admin, productController.putProduct);
 
@@ -78,7 +78,7 @@ router.post('/register', async (req, res) => {
   if (result.success) {
     res.redirect('/login');
   } else {
-    res.status(400).json({ error: 'Error al registrar al usuario' });
+    res.status(400).json({ error: result.error || 'Error al registrar al usuario' });
   }
 });
 

@@ -14,18 +14,16 @@ async function getProducts() {
   
 async function createProduct(name, price, description, category, img) {
   try {
-    const createTable = `
-    SELECT EXISTS (
-      SELECT 1
-      FROM   information_schema.tables 
-      WHERE  table_schema = 'public'
-      AND    table_name = 'productos'
-    );
-    `;
-    const resultTable = await pool.query(createTable);
-    console.log(resultTable)
-    if(!resultTable.rows[0].exists){
-      const query = `
+    const createTableQuery = 
+    `
+    DO $$
+    BEGIN
+      IF NOT EXISTS (
+        SELECT 1
+        FROM   information_schema.tables 
+        WHERE  table_schema = 'public'
+        AND    table_name = 'productos'
+      ) THEN
         CREATE TABLE productos (
           id SERIAL PRIMARY KEY,
           name VARCHAR(255),
@@ -34,9 +32,11 @@ async function createProduct(name, price, description, category, img) {
           category VARCHAR(100),
           img VARCHAR(255)
         );
-      `;
-      await pool.query(query);
-    }
+      END IF;
+    END$$;
+    `;
+    await pool.query(createTableQuery);
+
     const image = `/imgs/${img}`
     const query = `INSERT INTO productos (name, price, description, category, img) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
     const values = [name, price, description, category, image];
@@ -104,7 +104,7 @@ async function getProductByCategory(category) {
 module.exports = {
   getProducts,
   createProduct,
-   putProduct,
+  putProduct,
   deleteProduct,
   getProduct,
   getProductByCategory 
