@@ -70,7 +70,7 @@ passport.register = async (username, password, email, phoneNumber, firstName, la
     // Registrar usuario
     const user = await db.query(
       'INSERT INTO usuarios (username, password, email, role, phone_number, first_name, last_name) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-      [username, hashedPassword, email, 1, phoneNumber, firstName, lastName]
+      [username, hashedPassword, email, 3, phoneNumber, firstName, lastName]
     );
     // Crear el Carrito
     const cart = await db.query('INSERT INTO carrito (id_usuario) VALUES ($1) RETURNING *', [user.rows[0].id]);
