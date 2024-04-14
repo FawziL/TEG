@@ -21,6 +21,18 @@ async function getProductsFromCart(id_user) {
 
 async function addProducts(idCarrito, idProducto, cantidad, precio) {
   try {
+    if(!await tableExists('carrito_items')){
+      const query = `
+      CREATE TABLE carrito_items (
+        id_carrito_item SERIAL PRIMARY KEY,
+        id_carrito INTEGER NOT NULL,
+        id_producto INTEGER NOT NULL,
+        cantidad INTEGER NOT NULL,
+        precio INTEGER NOT NULL,
+        FOREIGN KEY (id_producto) REFERENCES productos(id)
+      );`;
+      await pool.query(query);
+    }
     const query = `
       INSERT INTO carrito_items (id_carrito, id_producto, cantidad, precio)
       VALUES ($1, $2, $3, $4) RETURNING *`;
@@ -47,23 +59,52 @@ async function removeProductsFromCart(idCarrito, idProducto) {
 
 const buyCart = async (data) => {
   try{
-      const query = `INSERT INTO ordenes_compra (id_usuario, productos, fecha_compra, estado, nombre_usuario, precio_total, email, phone_number) VALUES ($1, $2, CURRENT_TIMESTAMP, $3, $4, $5, $6, $7)`;
-      let products = JSON.stringify(data.products)
-      const values = [data.userId, products, 'pendiente', data.user, data.precioTotal, data.email, data.phoneNumber];
-      const result = await pool.query(query, values);
-      const id_carrito = await getCart(data.userId)
-      await pool.query(`DELETE FROM carrito_items WHERE id_carrito = $1`, [id_carrito.id]);
-      return result.rows[0];
-      }
-      catch (error) {
-        console.log(error)
-      }
+    if(!await tableExists('ordenes_compra')){
+        const query = `
+        CREATE TABLE ordenes_compra (
+          id_orden_compra SERIAL PRIMARY KEY,
+          id_usuario INTEGER NOT NULL,
+          productos JSONB NOT NULL,
+          fecha_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          estado VARCHAR(255) NOT NULL,
+          nombre_usuario VARCHAR(255) NOT NULL,
+          precio_total DECIMAL(10,2) NOT NULL,
+          email VARCHAR(255) NOT NULL,
+          phone_number VARCHAR(255) NOT NULL
+        );`;
+        await pool.query(query);
+    }
+    const query = `INSERT INTO ordenes_compra (id_usuario, productos, fecha_compra, estado, nombre_usuario, precio_total, email, phone_number) VALUES ($1, $2, CURRENT_TIMESTAMP, $3, $4, $5, $6, $7)`;
+    let products = JSON.stringify(data.products)
+    const values = [data.userId, products, 'Pendiente', data.user, data.precioTotal, data.email, data.phoneNumber];
+    const result = await pool.query(query, values);
+    const id_carrito = await getCart(data.userId)
+    await pool.query(`DELETE FROM carrito_items WHERE id_carrito = $1`, [id_carrito.id]);
+    return result.rows[0];
+  }
+  catch (error) {
+    console.log(error)
+  }
+}
+async function tableExists(tableName) {
+  const result = await pool.query(
+    `
+    SELECT EXISTS (
+      SELECT 1
+      FROM information_schema.tables
+      WHERE table_schema = 'public'
+      AND table_name = $1
+    );
+    `,
+    [tableName]
+  );
+  return result.rows[0].exists;
 }
   
 module.exports = {
-    getCart,
-    getProductsFromCart,
-    addProducts,
-    removeProductsFromCart,
-    buyCart
-  };
+  getCart,
+  getProductsFromCart,
+  addProducts,
+  removeProductsFromCart,
+  buyCart
+};

@@ -25,14 +25,15 @@ async function putRole(req, res) {
 }
 
 async function logout (req, res, next) {
-  let user = req.user.username;
+  let username = req.user.username;
   req.logout(function (err) {
-    if (err) return next(err);
-    res.send(`<h1>Hasta luego ${user}</h1>
-          <script type="text/javascript">
-          setTimeout(function(){ location.href = '/login'},2000)
-          </script>`);
+    if (err) {
+      return res.status(500).send('Hubo un problema al cerrar la sesión');
+    }
+  
+    res.render('logout', { username });
   });
+
 };
 
 module.exports = {

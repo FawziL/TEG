@@ -75,7 +75,6 @@ async function buyCart(req, res) {
   }
 }
 
-
 module.exports = {
   getProductsFromCart,
   addProduct,
